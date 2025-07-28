@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Novedades, noticias, artículos y publicaciones de Pasate a Linux.">
+    <title>Novedades - Pasate a Linux</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navegacion">
+        <div class="contenedor-nav">
+            <div class="logo">
+                <img src="assets/img/pasatealinux-logo.jpg" alt="Pasate a Linux Logo" class="logo-img">
+                <span class="logo-texto">Pasate a Linux</span>
+            </div>
+            <ul class="menu-nav">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Quiénes Somos</a></li>
+                <li><a href="tutoriales.html">Tutoriales</a></li>
+                <li><a href="novedades.html" class="activo">Novedades</a></li>
+                <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                <li><a href="index.html#contacto" class="boton-cta">Contactar</a></li>
+                <li>
+                  <button id="switch-tema" aria-label="Cambiar tema" class="switch-tema-btn">
+                    <i class="fas fa-moon"></i>
+                  </button>
+                </li>
+            </ul>
+            <button class="menu-hamburguesa" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="contenido-novedades" style="padding-top: 110px;">
+        <section class="header-novedades">
+            <div class="contenedor">
+                <h1 class="titulo-faq">Novedades y Noticias</h1>
+                <p class="descripcion-faq">Mantente al día con las últimas publicaciones, noticias y artículos de Pasate a Linux.</p>
+                <!-- Filtros de tipo de publicación -->
+                 <!--
+                <div class="filtros-novedades">
+                    <button class="filtro-novedad activo" data-tipo="todas"><i class="fa-solid fa-list"></i> Todas</button>
+                    <button class="filtro-novedad" data-tipo="instagram"><i class="fa-brands fa-instagram"></i> Instagram</button>
+                    <button class="filtro-novedad" data-tipo="facebook"><i class="fa-brands fa-facebook"></i> Facebook</button>
+                    <button class="filtro-novedad" data-tipo="noticia"><i class="fa-solid fa-newspaper"></i> Noticias</button>
+                    <button class="filtro-novedad" data-tipo="articulo"><i class="fa-solid fa-file-alt"></i> Artículos</button>
+                </div>
+                -->
+            </div>
+        </section>
+
+        <!-- Grid de publicaciones -->
+        <section class="seccion-publicaciones">
+            <div class="contenedor">
+                <div class="grid-publicaciones" id="gridPublicaciones"></div>
+            </div>
+        </section>
+
+        <!-- Modal de detalle de publicación -->
+        <div id="modalPublicacion" class="modal-publicacion" style="display:none;">
+            <div class="modal-contenido">
+                <button class="cerrar-modal" id="cerrarModal" aria-label="Cerrar">&times;</button>
+                <img id="modalImagen" class="modal-img" src="" alt="Imagen publicación">
+                <span id="modalFuente" class="fuente-publicacion"></span>
+                <h2 id="modalTitulo" class="titulo-publicacion"></h2>
+                <span id="modalFecha" class="fecha-publicacion"></span>
+                <div id="modalContenido" class="modal-contenido-html"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <div class="contenido-footer">
+                <div class="info-footer">
+                    <div class="logo-footer">
+                        <img src="assets/img/pasatealinux-logo.jpg" alt="Pasate a Linux" class="logo-footer-img">
+                        <span>Pasate a Linux</span>
+                    </div>
+                    <p>Servicio profesional de migración de Windows a Linux Mint</p>
+                    <div class="redes-footer">
+                        <a href="https://instagram.com/pasatealinux" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="enlace-red-social">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/pasatealinux" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="enlace-red-social">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="enlaces-footer">
+                    <div class="columna-enlaces">
+                        <h4>Navegación</h4>
+                        <ul>
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="index.html#beneficios">Beneficios</a></li>
+                            <li><a href="index.html#comparacion">Comparación</a></li>
+                            <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                        </ul>
+                    </div>
+                    <div class="columna-enlaces">
+                        <h4>Información</h4>
+                        <ul>
+                            <li><a href="index.html#que-es-linux">¿Qué es Linux?</a></li>
+                            <li><a href="index.html#seguridad">Seguridad</a></li>
+                            <li><a href="index.html#costos">Costos</a></li>
+                            <li><a href="index.html#facilidad-uso">Facilidad de uso</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Pasate a Linux. Todos los derechos reservados.</p>
+                <p>Linux es una marca registrada de Linus Torvalds.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>
+    // Cargar publicaciones desde JSON y renderizar
+    let publicaciones = [];
+    fetch('datos/novedades.json')
+        .then(res => res.json())
+        .then(data => {
+            publicaciones = data;
+            renderizarPublicaciones('todas');
+        });
+
+    // Renderizar publicaciones según filtro
+    function renderizarPublicaciones(filtro) {
+        const grid = document.getElementById('gridPublicaciones');
+        grid.innerHTML = '';
+        publicaciones
+            .filter(pub => filtro === 'todas' || pub.tipo === filtro)
+            .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+            .forEach(pub => {
+                const card = document.createElement('article');
+                card.className = 'tarjeta-publicacion';
+                card.setAttribute('data-tipo', pub.tipo);
+                card.innerHTML = `
+                    <img src="${pub.imagen}" alt="${pub.titulo}" class="img-publicacion">
+                    <div class="contenido-publicacion">
+                        <span class="fuente-publicacion ${pub.tipo}"><i class="${iconoFuente(pub.tipo)}"></i> ${pub.fuente}</span>
+                        <h2 class="titulo-publicacion">${pub.titulo}</h2>
+                        <p class="resumen-publicacion">${pub.resumen}</p>
+                        <div class="meta-publicacion">
+                            <span class="fecha-publicacion"><i class="fa-regular fa-calendar"></i> ${formatearFecha(pub.fecha)}</span>
+                            <button class="enlace-publicacion" data-id="${pub.id}">Ver publicación</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        // Asignar eventos a los botones de detalle
+        document.querySelectorAll('.enlace-publicacion').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = parseInt(this.getAttribute('data-id'));
+                mostrarModal(id);
+            });
+        });
+    }
+
+    // Filtros
+    document.querySelectorAll('.filtro-novedad').forEach(boton => {
+        boton.addEventListener('click', function() {
+            document.querySelectorAll('.filtro-novedad').forEach(b => b.classList.remove('activo'));
+            this.classList.add('activo');
+            renderizarPublicaciones(this.getAttribute('data-tipo'));
+        });
+    });
+
+    // Icono según tipo
+    function iconoFuente(tipo) {
+        switch(tipo) {
+            case 'instagram': return 'fa-brands fa-instagram';
+            case 'facebook': return 'fa-brands fa-facebook';
+            case 'noticia': return 'fa-solid fa-newspaper';
+            case 'articulo': return 'fa-solid fa-file-alt';
+            default: return 'fa-solid fa-bullhorn';
+        }
+    }
+    // Formatear fecha
+    function formatearFecha(fecha) {
+        const d = new Date(fecha);
+        return d.toLocaleDateString('es-AR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    }
+    // Modal
+    function mostrarModal(id) {
+        const pub = publicaciones.find(p => p.id === id);
+        if (!pub) return;
+        document.getElementById('modalImagen').src = pub.imagen;
+        document.getElementById('modalImagen').alt = pub.titulo;
+        document.getElementById('modalFuente').className = 'fuente-publicacion ' + pub.tipo;
+        document.getElementById('modalFuente').innerHTML = `<i class="${iconoFuente(pub.tipo)}"></i> ${pub.fuente}`;
+        document.getElementById('modalTitulo').textContent = pub.titulo;
+        document.getElementById('modalFecha').innerHTML = `<i class='fa-regular fa-calendar'></i> ${formatearFecha(pub.fecha)}`;
+        document.getElementById('modalContenido').innerHTML = pub.contenido + '<button class="boton-cerrar-modal" onclick="cerrarModal()">Cerrar</button>';
+        document.getElementById('modalPublicacion').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    // Función para cerrar modal
+    function cerrarModal() {
+        document.getElementById('modalPublicacion').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    
+    document.getElementById('cerrarModal').addEventListener('click', cerrarModal);
+    
+    // Cerrar modal al hacer click fuera
+    document.getElementById('modalPublicacion').addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+    </script>
+</body>
+</html> 
