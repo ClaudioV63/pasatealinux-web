@@ -20,14 +20,13 @@
 }
 .tabla-atajos-teclado td:first-child {
     font-weight: 500;
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     color: var(--color-primario, #0a1628);
+    font-family: var(--fuente-principal);
 }
 .tabla-atajos-teclado td:last-child {
     text-align: right;
     font-weight: 700;
     color: var(--color-secundario, #00b894);
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     white-space: nowrap;
     font-size: 1.05em;
 }
@@ -40,7 +39,6 @@
     border: 2px solid var(--color-secundario, #00b894);
     margin-bottom: 1.5em;
     color: var(--color-primario, #0a1628);
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 .tarjeta-tip h3 {
     margin-top: 0;
@@ -68,7 +66,6 @@
 .lista-atajos-teclado li b {
     font-weight: 700;
     color: var(--color-secundario, #00b894);
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     margin-right: 0.3em;
     font-size: 1.05em;
 }
@@ -85,6 +82,7 @@
     border: none;
     padding: 10px 28px;
     border-radius: 24px 24px 0 0;
+    font-family: var(--fuente-principal);
     font-size: 1.08rem;
     font-weight: 600;
     cursor: pointer;
@@ -93,6 +91,7 @@
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
 }
 .tab-galeria.active {
+    font-family: var(--fuente-principal);
     background: #00b894;
     color: #fff;
     box-shadow: 0 4px 16px 0 rgba(0,184,148,0.10);
@@ -355,7 +354,8 @@
     --fondo-hero: linear-gradient(135deg, var(--color-primario) 0%, var(--color-primario-claro) 50%, var(--color-gris-800) 100%);
     
     /* Tipografía elegante - Basada en el logo */
-    --fuente-principal: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /*--fuente-principal: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;*/
+    --fuente-principal: 'Bai Jamjuree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --fuente-secundaria: 'Orbitron', 'Exo 2', monospace;
     --fuente-logo: 'Orbitron', monospace;
     
@@ -1177,7 +1177,7 @@ body {
 
 .tarjeta-beneficio p {
     line-height: 1.6;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--color-borde);
 }
 
@@ -1829,6 +1829,7 @@ body {
     align-items: center;
     font-size: var(--texto-base);
     font-weight: 600;
+    font-family: var(--fuente-principal);
     color: var(--color-gris-800);
     transition: var(--transicion-rapida);
     position: relative;
