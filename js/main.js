@@ -503,7 +503,7 @@ if ('serviceWorker' in navigator) {
 function precargarImagenes() {
     const imagenesImportantes = [
         'assets/img/pasatealinux-logo.jpg',
-        'assets/img/linux-2.png',
+        'assets/img/tux.png',
         'assets/img/Linux_Mint_logo.png'
     ];
     

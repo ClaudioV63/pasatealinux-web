@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PF35V1KYF2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-PF35V1KYF2');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tutoriales, tips, videos y descargas de ayuda para usuarios de Linux Mint.">
@@ -8,10 +19,13 @@
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
 </head>
+
 <body>
     <!-- Navegación -->
     <nav class="navegacion">
@@ -28,9 +42,9 @@
                 <li><a href="faq.html">Preguntas Frecuentes</a></li>
                 <li><a href="index.html#contacto" class="boton-cta">Contactar</a></li>
                 <li>
-                  <button id="switch-tema" aria-label="Cambiar tema" class="switch-tema-btn">
-                    <i class="fas fa-moon"></i>
-                  </button>
+                    <button id="switch-tema" aria-label="Cambiar tema" class="switch-tema-btn">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </li>
             </ul>
             <button class="menu-hamburguesa" aria-label="Abrir menú">
@@ -48,9 +62,12 @@
                 <p class="descripcion-faq">Aprende a sacarle el máximo provecho a Linux Mint con estos recursos.</p>
                 <!-- Botones de categorías -->
                 <div class="categorias-tutoriales">
-                    <button class="categoria-tutorial activa" data-seccion="videos"><i class="fa-solid fa-video"></i> Videos</button>
-                    <button class="categoria-tutorial" data-seccion="tips"><i class="fa-solid fa-bolt"></i> Tips Rápidos</button>
-                    <button class="categoria-tutorial" data-seccion="descargas"><i class="fa-solid fa-download"></i> Descargas</button>
+                    <button class="categoria-tutorial activa" data-seccion="videos"><i class="fa-solid fa-video"></i>
+                        Videos</button>
+                    <button class="categoria-tutorial" data-seccion="tips"><i class="fa-solid fa-bolt"></i> Tips
+                        Rápidos</button>
+                    <button class="categoria-tutorial" data-seccion="descargas"><i class="fa-solid fa-download"></i>
+                        Descargas</button>
                 </div>
             </div>
         </section>
@@ -91,21 +108,28 @@
             </div>
         </section>
 
-        
+
         <!-- Sección de Tips -->
         <section id="tips" class="seccion-tips">
             <div class="contenedor">
                 <h2 class="titulo-seccion">Tips rápidos</h2>
                 <ul class="lista-tips">
                     <li><i class="fa-solid fa-terminal"></i><b>Ctrl+Alt+T</b> para abrir la terminal rápidamente.</li>
-                    <li><i class="fa-solid fa-mouse-pointer"></i> Haz clic derecho en el escritorio para cambiar el fondo de pantalla.</li>
-                    <li><i class="fa-solid fa-search"></i><b>Ctrl+F</b> en el explorador de archivos para buscar documentos.</li>
-                    <li><i class="fa-solid fa-arrow-rotate-right"></i> Actualiza tu sistema frecuentemente desde el Gestor de actualizaciones.</li>
-                    <li><i class="fa-solid fa-box-open"></i> Instala software fácilmente desde el Gestor de software de Linux Mint.</li>
+                    <li><i class="fa-solid fa-mouse-pointer"></i> Haz clic derecho en el escritorio para cambiar el
+                        fondo de pantalla.</li>
+                    <li><i class="fa-solid fa-search"></i><b>Ctrl+F</b> en el explorador de archivos para buscar
+                        documentos.</li>
+                    <li><i class="fa-solid fa-arrow-rotate-right"></i> Actualiza tu sistema frecuentemente desde el
+                        Gestor de actualizaciones.</li>
+                    <li><i class="fa-solid fa-box-open"></i> Instala software fácilmente desde el Gestor de software de
+                        Linux Mint.</li>
                     <li><i class="fa-solid fa-lock"></i><b>Ctrl+Alt+L</b> para bloquear la pantalla rápidamente.</li>
-                    <li><i class="fa-solid fa-keyboard"></i> Aprovecha los atajos de teclado para agilizar tareas cotidianas.</li>
-                    <li><i class="fa-solid fa-sliders-h"></i> Personaliza los paneles y menús haciendo clic derecho sobre ellos.</li>
-                    <li><i class="fa-solid fa-clock-rotate-left"></i><b>Timeshift</b> para crear copias de seguridad y restaurar tu sistema si algo sale mal.</li>
+                    <li><i class="fa-solid fa-keyboard"></i> Aprovecha los atajos de teclado para agilizar tareas
+                        cotidianas.</li>
+                    <li><i class="fa-solid fa-sliders-h"></i> Personaliza los paneles y menús haciendo clic derecho
+                        sobre ellos.</li>
+                    <li><i class="fa-solid fa-clock-rotate-left"></i><b>Timeshift</b> para crear copias de seguridad y
+                        restaurar tu sistema si algo sale mal.</li>
                 </ul>
 
                 <!-- Tarjeta de atajos de teclado principales -->
@@ -114,16 +138,46 @@
                     <div class="tabla-atajos-teclado-contenedor">
                         <table class="tabla-atajos-teclado">
                             <tbody>
-                                <tr><td>Abrir la terminal</td><td><b>Ctrl + Alt + T</b></td></tr>
-                                <tr><td>Abrir el menú principal</td><td><b>Super (tecla Windows)</b></td></tr>
-                                <tr><td>Ejecutar un comando</td><td><b>Alt + F2</b></td></tr>
-                                <tr><td>Bloquear la pantalla</td><td><b>Ctrl + Alt + L</b></td></tr>
-                                <tr><td>Cerrar la ventana activa</td><td><b>Ctrl + Q</b></td></tr>
-                                <tr><td>Cambiar de espacio de trabajo</td><td><b>Ctrl + Alt + ←/→</b></td></tr>
-                                <tr><td>Capturar pantalla completa</td><td><b>PrtSc</b></td></tr>
-                                <tr><td>Cambiar entre ventanas abiertas</td><td><b>Alt + Tab</b></td></tr>
-                                <tr><td>Nueva carpeta en el explorador de archivos</td><td><b>Ctrl + Shift + N</b></td></tr>
-                                <tr><td>Renombrar archivo o carpeta seleccionada</td><td><b>F2</b></td></tr>
+                                <tr>
+                                    <td>Abrir la terminal</td>
+                                    <td><b>Ctrl + Alt + T</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Abrir el menú principal</td>
+                                    <td><b>Super (tecla Windows)</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Ejecutar un comando</td>
+                                    <td><b>Alt + F2</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Bloquear la pantalla</td>
+                                    <td><b>Ctrl + Alt + L</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Cerrar la ventana activa</td>
+                                    <td><b>Ctrl + Q</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Cambiar de espacio de trabajo</td>
+                                    <td><b>Ctrl + Alt + ←/→</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Capturar pantalla completa</td>
+                                    <td><b>PrtSc</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Cambiar entre ventanas abiertas</td>
+                                    <td><b>Alt + Tab</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Nueva carpeta en el explorador de archivos</td>
+                                    <td><b>Ctrl + Shift + N</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Renombrar archivo o carpeta seleccionada</td>
+                                    <td><b>F2</b></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -136,8 +190,10 @@
             <div class="contenedor">
                 <h2 class="titulo-seccion">Descargas útiles</h2>
                 <ul class="lista-descargas">
-                    <li><i class="fa-solid fa-file-pdf"></i> <a href="assets/docs/Guia Rapida Linux Mint.pdf" download>Guía rápida de Linux Mint (PDF)</a></li>
-                    <li><i class="fa-solid fa-file-zipper"></i> <a href="assets/docs/Guia Rapida de Atajos.pdf" download>Atajos de teclado para Linux Mint (PDF)</a></li>
+                    <li><i class="fa-solid fa-file-pdf"></i> <a href="assets/docs/Guia Rapida Linux Mint.pdf"
+                            download>Guía rápida de Linux Mint (PDF)</a></li>
+                    <li><i class="fa-solid fa-file-zipper"></i> <a href="assets/docs/Guia Rapida de Atajos.pdf"
+                            download>Atajos de teclado para Linux Mint (PDF)</a></li>
                 </ul>
             </div>
         </section>
@@ -153,10 +209,12 @@
                     </div>
                     <p>Servicio profesional de migración de Windows a Linux Mint</p>
                     <div class="redes-footer">
-                        <a href="https://instagram.com/pasatealinux" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="enlace-red-social">
+                        <a href="https://instagram.com/pasatealinux" target="_blank" rel="noopener noreferrer"
+                            aria-label="Instagram" class="enlace-red-social">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://facebook.com/pasatealinux" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="enlace-red-social">
+                        <a href="https://facebook.com/pasatealinux" target="_blank" rel="noopener noreferrer"
+                            aria-label="Facebook" class="enlace-red-social">
                             <i class="fab fa-facebook"></i>
                         </a>
                     </div>
@@ -190,32 +248,33 @@
     </footer>
     <script src="js/main.js"></script>
     <script>
-    // Scroll suave a la sección correspondiente al hacer clic en la categoría
-    document.querySelectorAll('.categoria-tutorial').forEach(boton => {
-        boton.addEventListener('click', function() {
-            document.querySelectorAll('.categoria-tutorial').forEach(b => b.classList.remove('activa'));
-            this.classList.add('activa');
-            const id = this.getAttribute('data-seccion');
-            const seccion = document.getElementById(id);
-            if (seccion) {
-                const nav = document.querySelector('.navegacion');
-                const offset = nav ? nav.offsetHeight + 10 : 100;
-                const top = seccion.getBoundingClientRect().top + window.scrollY - offset;
-                window.scrollTo({ top, behavior: 'smooth' });
-            }
-        });
-    });
-
-    // Pausar otros videos al reproducir uno
-    document.querySelectorAll('.seccion-videos video').forEach(video => {
-        video.addEventListener('play', function() {
-            document.querySelectorAll('.seccion-videos video').forEach(otro => {
-                if (otro !== video) {
-                    otro.pause();
+        // Scroll suave a la sección correspondiente al hacer clic en la categoría
+        document.querySelectorAll('.categoria-tutorial').forEach(boton => {
+            boton.addEventListener('click', function () {
+                document.querySelectorAll('.categoria-tutorial').forEach(b => b.classList.remove('activa'));
+                this.classList.add('activa');
+                const id = this.getAttribute('data-seccion');
+                const seccion = document.getElementById(id);
+                if (seccion) {
+                    const nav = document.querySelector('.navegacion');
+                    const offset = nav ? nav.offsetHeight + 10 : 100;
+                    const top = seccion.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
                 }
             });
         });
-    });
+
+        // Pausar otros videos al reproducir uno
+        document.querySelectorAll('.seccion-videos video').forEach(video => {
+            video.addEventListener('play', function () {
+                document.querySelectorAll('.seccion-videos video').forEach(otro => {
+                    if (otro !== video) {
+                        otro.pause();
+                    }
+                });
+            });
+        });
     </script>
 </body>
-</html> 
+
+</html>
