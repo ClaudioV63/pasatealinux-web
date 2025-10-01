@@ -30,6 +30,17 @@
 </head>
 
 <body>
+    <!-- Banner Temporal Dinámico -->
+    <div id="bannerTemporal" class="banner-temporal">
+        <div class="contenedor-banner">
+            <i class="fas fa-exclamation-triangle icono-banner"></i>
+            <span id="mensajeBanner" class="mensaje-banner">Cargando...</span>
+            <button id="cerrarBanner" class="cerrar-banner" aria-label="Cerrar banner">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Navegación -->
     <nav class="navegacion">
         <div class="contenedor-nav">
@@ -92,9 +103,13 @@
                     </p>
 
                     <div class="botones-hero">
-                        <a href="#contacto" class="boton-primario">
-                            <i class="fas fa-rocket"></i>
-                            ¡Me interesa!
+                        <a href="#contacto" class="boton-primario" data-tipo="personal">
+                            <i class="fas fa-user"></i>
+                            Uso Personal
+                        </a>
+                        <a href="#contacto" class="boton-primario boton-empresa" data-tipo="empresa">
+                            <i class="fas fa-building"></i>
+                            Para mi Empresa
                         </a>
                         <a href="faq.html" class="boton-secundario">
                             <i class="fas fa-question-circle"></i>
@@ -183,6 +198,54 @@
                         generación, con Linux podés convertir tu antigua notebook en una herramienta ágil y útil para
                         tareas específicas o como respaldo.
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección ¿Quién Puede Migrar? -->
+    <section class="seccion-quien-migrar">
+        <div class="contenedor">
+            <h2 class="titulo-seccion">¿Quién Puede Migrar a Linux?</h2>
+            <p class="descripcion-seccion">
+                Nuestro servicio está diseñado para diferentes necesidades
+            </p>
+            
+            <div class="grid-publicos">
+                <!-- Tarjeta Uso Personal -->
+                <div class="tarjeta-publico tarjeta-personal">
+                    <div class="icono-publico">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Uso Personal</h3>
+                    <ul class="lista-publico">
+                        <li><i class="fas fa-check"></i> Notebooks viejas que ya no soportan Windows</li>
+                        <li><i class="fas fa-check"></i> PCs de hogar y uso familiar</li>
+                        <li><i class="fas fa-check"></i> Estudiantes que buscan ahorrar</li>
+                        <li><i class="fas fa-check"></i> Usuarios que quieren más velocidad</li>
+                    </ul>
+                    <a href="#contacto" class="boton-tarjeta" data-tipo="personal">
+                        <i class="fas fa-rocket"></i>
+                        Migrar Mi Equipo
+                    </a>
+                </div>
+
+                <!-- Tarjeta Empresas -->
+                <div class="tarjeta-publico tarjeta-empresa">
+                    <div class="icono-publico">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Pequeñas y Medianas Empresas</h3>
+                    <ul class="lista-publico">
+                        <li><i class="fas fa-check"></i> Oficinas con 2-50 equipos</li>
+                        <li><i class="fas fa-check"></i> Estudios profesionales (contadores, abogados)</li>
+                        <li><i class="fas fa-check"></i> Comercios y talleres</li>
+                        <li><i class="fas fa-check"></i> Empresas que buscan reducir costos</li>
+                    </ul>
+                    <a href="#contacto" class="boton-tarjeta boton-tarjeta-empresa" data-tipo="empresa">
+                        <i class="fas fa-briefcase"></i>
+                        Consultoría Gratuita
+                    </a>
                 </div>
             </div>
         </div>
@@ -288,6 +351,112 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </section>
+
+    <!-- Calculadora de Ahorro -->
+    <section id="calculadora-ahorro" class="seccion-calculadora-ahorro">
+        <div class="contenedor">
+            <h2 class="titulo-seccion">Calculá tu Ahorro</h2>
+            <p class="descripcion-seccion">
+                Descubrí cuánto dinero podés ahorrar migrando a Linux Mint
+            </p>
+
+            <!-- Toggle Personal/Empresa -->
+            <div class="toggle-calculadora">
+                <button class="boton-toggle activo" data-modo="personal">
+                    <i class="fas fa-user"></i> Uso Personal
+                </button>
+                <button class="boton-toggle" data-modo="empresa">
+                    <i class="fas fa-building"></i> Empresa
+                </button>
+            </div>
+
+            <!-- Calculadora Personal -->
+            <div class="calculadora-contenido calculadora-personal activa">
+                <div class="calculadora-grid">
+                    <div class="calculadora-input">
+                        <label for="equiposPersonal">
+                            <i class="fas fa-laptop"></i> ¿Cuántos equipos tenés?
+                        </label>
+                        <input type="number" id="equiposPersonal" min="1" max="3" value="1" class="input-equipos">
+                        <span class="ayuda-texto">Máximo 3 equipos para uso personal</span>
+                    </div>
+
+                    <div class="calculadora-resultados">
+                        <h3>Ahorro Estimado</h3>
+                        <div class="resultado-item">
+                            <span class="resultado-label">Windows 11 Home:</span>
+                            <span class="resultado-valor" id="costoWindowsPersonal">$204</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span class="resultado-label">Microsoft 365 Personal:</span>
+                            <span class="resultado-valor" id="costoOfficePersonal">$42</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span class="resultado-label">Antivirus (anual):</span>
+                            <span class="resultado-valor" id="costoAntivirusPersonal">$40</span>
+                        </div>
+                        <div class="resultado-total">
+                            <span class="resultado-label-total">Total que ahorrás:</span>
+                            <span class="resultado-valor-total" id="totalPersonal">$286 USD</span>
+                        </div>
+                        <p class="resultado-nota">
+                            <i class="fas fa-info-circle"></i> 
+                            Con Linux Mint todo es <strong>gratis</strong>: sistema operativo, suite ofimática y sin necesidad de antivirus.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculadora Empresa -->
+            <div class="calculadora-contenido calculadora-empresa">
+                <div class="calculadora-grid">
+                    <div class="calculadora-input">
+                        <label for="equiposEmpresa">
+                            <i class="fas fa-desktop"></i> ¿Cuántos equipos tiene tu empresa?
+                        </label>
+                        <input type="number" id="equiposEmpresa" min="2" max="100" value="10" class="input-equipos">
+                        <span class="ayuda-texto">De 2 a 100 equipos</span>
+                    </div>
+
+                    <div class="calculadora-resultados">
+                        <h3>Ahorro Anual Estimado</h3>
+                        <div class="resultado-item">
+                            <span class="resultado-label">Windows 11 Pro:</span>
+                            <span class="resultado-valor" id="costoWindowsEmpresa">$2,950</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span class="resultado-label">Microsoft 365 Empresa:</span>
+                            <span class="resultado-valor" id="costoOfficeEmpresa">$1,500</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span class="resultado-label">Antivirus empresarial:</span>
+                            <span class="resultado-valor" id="costoAntivirusEmpresa">$500</span>
+                        </div>
+                        <div class="resultado-total">
+                            <span class="resultado-label-total">Ahorro anual:</span>
+                            <span class="resultado-valor-total" id="totalEmpresa">$4,950 USD</span>
+                        </div>
+                        <div class="resultado-roi">
+                            <span class="roi-label">Ahorro a 3 años:</span>
+                            <span class="roi-valor" id="roiEmpresa">$14,850 USD</span>
+                        </div>
+                        <p class="resultado-nota">
+                            <i class="fas fa-chart-line"></i> 
+                            La inversión en migración se recupera en <strong>menos de 6 meses</strong>. 
+                            Después, todo es ahorro puro.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculadora-cta">
+                <a href="#contacto" class="boton-primario">
+                    <i class="fas fa-rocket"></i>
+                    ¡Quiero Migrar Ahora!
+                </a>
+            </div>
         </div>
     </section>
 
@@ -479,6 +648,52 @@
                             <div class="info-autor">
                                 <span class="nombre-autor">María F.</span>
                                 <span class="profesion">Ama de Casa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonios Empresariales -->
+                    <div class="testimonio testimonio-empresa">
+                        <div class="comillas">"</div>
+                        <p>"Migramos los 8 equipos de nuestro estudio contable a Linux Mint y fue la mejor decisión. 
+                            Ahorramos más de $2,000 USD al año en licencias y el rendimiento mejoró notablemente. 
+                            Nuestro software de facturación web funciona perfecto y LibreOffice reemplazó completamente a Office. 
+                            El soporte post-migración fue excelente."</p>
+                        <div class="autor-testimonio">
+                            <img src="assets/img/avatar-placeholder.jpg" alt="Usuario" class="avatar-testimonio">
+                            <div class="info-autor">
+                                <span class="nombre-autor">Estudio Contable</span>
+                                <span class="profesion">8 equipos migrados - CABA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonio testimonio-empresa">
+                        <div class="comillas">"</div>
+                        <p>"Teníamos 15 notebooks viejas que ya no soportaban Windows 11. Comprar equipos nuevos 
+                            hubiera significado una inversión de más de USD $12,000. Con la migración a Linux 
+                            recuperamos todos los equipos por una fracción del costo. Nuestros empleados se adaptaron en días 
+                            y ahora todo funciona más rápido que nunca. La capacitación fue clara y el soporte técnico excelente."</p>
+                        <div class="autor-testimonio">
+                            <img src="assets/img/avatar-placeholder.jpg" alt="Usuario" class="avatar-testimonio">
+                            <div class="info-autor">
+                                <span class="nombre-autor">Comercial SM</span>
+                                <span class="profesion">15 equipos migrados - CABA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonio testimonio-empresa">
+                        <div class="comillas">"</div>
+                        <p>"Como estudio de arquitectura, necesitábamos equipos confiables sin gastar fortunas en licencias. 
+                            Migramos 5 PCs a Linux Mint y todo nuestro software basado en web (gestión de proyectos, AutoCAD online) 
+                            funciona perfecto. La prueba piloto nos convenció: ahorro real, cero problemas de virus, 
+                            y equipos que arrancan en segundos."</p>
+                        <div class="autor-testimonio">
+                            <img src="assets/img/avatar-placeholder.jpg" alt="Usuario" class="avatar-testimonio">
+                            <div class="info-autor">
+                                <span class="nombre-autor">Estudio Arquitectura San Isidro</span>
+                                <span class="profesion">5 equipos migrados - Buenos Aires</span>
                             </div>
                         </div>
                     </div>

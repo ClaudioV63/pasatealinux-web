@@ -160,6 +160,7 @@
 /* Galería visual de Linux (3x3) */
 .seccion-galeria-visual {
     padding: 60px 0 40px 0;
+    background: var(--fondo-principal); /* Fondo blanco/transparente alternado */
 }
 .galeria-visual-grid {
     display: grid;
@@ -1111,7 +1112,7 @@ body {
 /* Sección Beneficios */
 .seccion-beneficios {
     padding: 80px 0;
-    background: var(--fondo-beneficios, transparent); /* Variable para fondo beneficios */
+    background: var(--fondo-secundario); /* Fondo gris claro alternado */
     color: var(--texto-beneficios, var(--color-primario)); /* Variable para texto */
 }
 
@@ -1184,6 +1185,7 @@ body {
 /* Sección Comparación */
 .seccion-comparacion {
     padding: 80px 0;
+    background: var(--fondo-principal); /* Fondo blanco/transparente alternado */
     overflow-x: hidden; /* Evita el scroll horizontal */
 }
 
@@ -3177,9 +3179,6 @@ a:focus {
             "img5 img3"
             "img4 img3";
     }
-    .img-hero1, .img-hero2, .img-hero3, .img-hero4, .img-hero5 {
-        /*height: 110px;*/
-    }
 
     .img-hero2, .img-hero3 {
         object-position: top;
@@ -3601,6 +3600,633 @@ a:focus {
   .menu-nav li:last-child {
     margin-top: 0;
   }
+}
+
+/* ========================================
+   ESTILOS PARA ESTRATEGIA DUAL (EMPRESAS + PERSONAL)
+   ======================================== */
+
+/* --- Banner Temporal Dinámico --- */
+.banner-temporal {
+    background: linear-gradient(135deg, var(--color-advertencia) 0%, #ff8c5a 100%);
+    color: #ffffff;
+    padding: 0.75rem 0;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    z-index: var(--z-sticky);
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.banner-temporal.oculto {
+    display: none;
+}
+
+.contenedor-banner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    position: relative;
+}
+
+.icono-banner {
+    font-size: 1.2rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.mensaje-banner {
+    font-weight: 600;
+    font-size: 0.95rem;
+    flex: 1;
+    max-width: 800px;
+}
+
+.cerrar-banner {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #ffffff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transicion-normal);
+    position: absolute;
+    right: 1rem;
+}
+
+.cerrar-banner:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* --- Botones Hero Diferenciados --- */
+.botones-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.boton-empresa {
+    background: linear-gradient(135deg, var(--color-secundario) 0%, var(--color-acento) 100%);
+    border: 2px solid var(--color-secundario);
+}
+
+.boton-empresa:hover {
+    background: linear-gradient(135deg, var(--color-acento) 0%, var(--color-secundario) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 212, 170, 0.4);
+}
+
+/* --- Sección ¿Quién Puede Migrar? --- */
+.seccion-quien-migrar {
+    padding: 4rem 0;
+    background: var(--fondo-secundario);
+}
+
+.grid-publicos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.tarjeta-publico {
+    background: var(--fondo-principal);
+    border-radius: var(--radio-xl);
+    padding: 2.5rem 2rem;
+    box-shadow: var(--sombra-media);
+    transition: var(--transicion-normal);
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.tarjeta-publico:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-xl);
+}
+
+.tarjeta-personal {
+    border-color: var(--color-info);
+}
+
+.tarjeta-personal:hover {
+    border-color: var(--color-secundario);
+    box-shadow: 0 12px 30px rgba(0, 212, 170, 0.2);
+}
+
+.tarjeta-empresa {
+    border-color: var(--color-acento);
+}
+
+.tarjeta-empresa:hover {
+    border-color: var(--color-secundario);
+    box-shadow: 0 12px 30px rgba(0, 245, 212, 0.25);
+}
+
+.icono-publico {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--color-secundario) 0%, var(--color-acento) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--sombra-glow);
+}
+
+.icono-publico i {
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+.tarjeta-publico h3 {
+    font-size: var(--texto-2xl);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-family: var(--fuente-secundaria);
+}
+
+.lista-publico {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    text-align: left;
+    width: 100%;
+}
+
+.lista-publico li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: var(--texto-base);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.lista-publico i {
+    color: var(--color-secundario);
+    font-size: 1.1rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.boton-tarjeta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-primario-claro) 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: var(--radio-lg);
+    font-weight: 600;
+    font-size: var(--texto-base);
+    transition: var(--transicion-normal);
+    box-shadow: var(--sombra-media);
+    margin-top: auto;
+}
+
+.boton-tarjeta:hover {
+    background: linear-gradient(135deg, var(--color-primario-claro) 0%, var(--color-primario) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-fuerte);
+}
+
+.boton-tarjeta-empresa {
+    background: linear-gradient(135deg, var(--color-secundario) 0%, var(--color-acento) 100%);
+}
+
+.boton-tarjeta-empresa:hover {
+    background: linear-gradient(135deg, var(--color-acento) 0%, var(--color-secundario) 100%);
+    box-shadow: 0 8px 20px rgba(0, 212, 170, 0.4);
+}
+
+/* --- Tema Claro - Ajustes --- */
+:root[data-tema="claro"] .banner-temporal {
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 100%);
+}
+
+:root[data-tema="claro"] .tarjeta-publico {
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+:root[data-tema="claro"] .tarjeta-publico {
+    background: #ffffff;
+}
+
+:root[data-tema="claro"] .tarjeta-publico h3 {
+    color: var(--color-primario);
+}
+
+:root[data-tema="claro"] .lista-publico li {
+    color: var(--color-primario);
+}
+
+:root[data-tema="claro"] .seccion-quien-migrar {
+    background: var(--color-gris-100);
+}
+
+/* --- Calculadora de Ahorro --- */
+.seccion-calculadora-ahorro {
+    padding: 4rem 0;
+    background: var(--fondo-secundario); /* Fondo gris claro alternado */
+}
+
+.toggle-calculadora {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.boton-toggle {
+    padding: 0.875rem 2rem;
+    background: var(--color-gris-200);
+    color: var(--color-gris-700);
+    border: 2px solid transparent;
+    border-radius: var(--radio-lg);
+    font-weight: 600;
+    font-size: var(--texto-base);
+    cursor: pointer;
+    transition: var(--transicion-normal);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.boton-toggle:hover {
+    background: var(--color-gris-300);
+    transform: translateY(-2px);
+}
+
+.boton-toggle.activo {
+    background: linear-gradient(135deg, var(--color-secundario) 0%, var(--color-acento) 100%);
+    color: #ffffff;
+    border-color: var(--color-secundario);
+    box-shadow: var(--sombra-glow);
+}
+
+.calculadora-contenido {
+    display: none;
+    margin-top: 2rem;
+}
+
+.calculadora-contenido.activa {
+    display: block;
+    animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calculadora-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.calculadora-input {
+    background: var(--fondo-secundario);
+    padding: 2rem;
+    border-radius: var(--radio-xl);
+    box-shadow: var(--sombra-media);
+}
+
+.calculadora-input label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: var(--texto-lg);
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.calculadora-input label i {
+    color: var(--color-secundario);
+    font-size: 1.3rem;
+}
+
+.input-equipos {
+    width: 100%;
+    padding: 1rem;
+    font-size: var(--texto-2xl);
+    font-weight: 700;
+    text-align: center;
+    border: 2px solid var(--color-secundario);
+    border-radius: var(--radio-md);
+    background: var(--color-gris-800);
+    color: #ffffff;
+    transition: var(--transicion-normal);
+}
+
+.input-equipos:focus {
+    outline: none;
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.2);
+}
+
+.ayuda-texto {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: var(--texto-sm);
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+.calculadora-resultados {
+    background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-primario-claro) 100%);
+    padding: 2rem;
+    border-radius: var(--radio-xl);
+    box-shadow: var(--sombra-fuerte);
+    color: #ffffff;
+}
+
+.calculadora-resultados h3 {
+    font-size: var(--texto-xl);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--color-acento);
+    font-family: var(--fuente-secundaria);
+}
+
+.resultado-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.resultado-label {
+    font-size: var(--texto-base);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.resultado-valor {
+    font-size: var(--texto-lg);
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.resultado-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0 1rem 0;
+    margin-top: 1rem;
+    border-top: 2px solid var(--color-secundario);
+}
+
+.resultado-label-total {
+    font-size: var(--texto-lg);
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.resultado-valor-total {
+    font-size: var(--texto-3xl);
+    font-weight: 900;
+    color: var(--color-acento);
+    font-family: var(--fuente-secundaria);
+}
+
+.resultado-roi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 1rem;
+    background: rgba(0, 245, 212, 0.1);
+    border-radius: var(--radio-md);
+    border: 1px solid var(--color-acento);
+}
+
+.roi-label {
+    font-size: var(--texto-base);
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.roi-valor {
+    font-size: var(--texto-2xl);
+    font-weight: 900;
+    color: var(--color-acento);
+    font-family: var(--fuente-secundaria);
+}
+
+.resultado-nota {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radio-md);
+    font-size: var(--texto-sm);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.resultado-nota i {
+    color: var(--color-acento);
+    margin-right: 0.5rem;
+}
+
+.calculadora-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.calculadora-cta .boton-primario {
+    padding: 1rem 3rem;
+    font-size: var(--texto-lg);
+}
+
+/* --- Tema Claro - Calculadora --- */
+/* La calculadora ahora usa fondo-secundario que ya se adapta al tema */
+
+:root[data-tema="claro"] .calculadora-input {
+    background: #ffffff;
+}
+
+:root[data-tema="claro"] .calculadora-input label {
+    color: var(--color-primario);
+}
+
+:root[data-tema="claro"] .input-equipos {
+    background: #ffffff;
+    color: var(--color-primario);
+}
+
+:root[data-tema="claro"] .ayuda-texto {
+    color: var(--color-gris-600);
+}
+
+/* Ajuste del degradado de la calculadora en modo claro para mejor legibilidad */
+:root[data-tema="claro"] .calculadora-resultados {
+    background: linear-gradient(135deg, #1a3a52 0%, #4a7c8f 100%);
+}
+
+:root[data-tema="claro"] .calculadora-resultados h3 {
+    color: var(--color-acento-claro);
+}
+
+:root[data-tema="claro"] .resultado-label,
+:root[data-tema="claro"] .resultado-valor,
+:root[data-tema="claro"] .resultado-label-total,
+:root[data-tema="claro"] .roi-label {
+    color: #ffffff;
+}
+
+:root[data-tema="claro"] .resultado-valor-total,
+:root[data-tema="claro"] .roi-valor {
+    color: var(--color-acento-claro);
+}
+
+:root[data-tema="claro"] .resultado-nota {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* --- Testimonios Empresariales - Diferenciación Visual --- */
+.testimonio-empresa {
+    border-left: 4px solid var(--color-secundario);
+    background: linear-gradient(135deg, rgba(0, 212, 170, 0.03) 0%, rgba(0, 245, 212, 0.05) 100%);
+}
+
+.testimonio-empresa p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.testimonio-empresa .nombre-autor {
+    color: var(--color-secundario);
+    font-weight: 700;
+}
+
+.testimonio-empresa .profesion {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+:root[data-tema="claro"] .testimonio-empresa {
+    background: linear-gradient(135deg, rgba(0, 212, 170, 0.05) 0%, rgba(0, 245, 212, 0.08) 100%);
+    border-left-color: var(--color-secundario);
+}
+
+:root[data-tema="claro"] .testimonio-empresa p {
+    color: var(--color-primario);
+}
+
+:root[data-tema="claro"] .testimonio-empresa .profesion {
+    color: var(--color-gris-600);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .banner-temporal {
+        padding: 1rem 0;
+    }
+    
+    .mensaje-banner {
+        font-size: 0.85rem;
+        padding-right: 2rem;
+    }
+    
+    .cerrar-banner {
+        right: 0.5rem;
+    }
+    
+    .botones-hero {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .botones-hero a {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .grid-publicos {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .tarjeta-publico {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .icono-publico {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .icono-publico i {
+        font-size: 2rem;
+    }
+    
+    .tarjeta-publico h3 {
+        font-size: var(--texto-xl);
+    }
+    
+    .calculadora-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .toggle-calculadora {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .boton-toggle {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 

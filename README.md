@@ -14,7 +14,7 @@ Articulo FACEBOOK a AGREGAR
 
 
 ## Descripción
-Sitio web profesional y moderno para el servicio de migración de Windows a Linux Mint. Diseñado con tecnologías web estándar (HTML5, CSS3, JavaScript) para ofrecer una experiencia de usuario excepcional.
+Sitio web profesional y moderno para el servicio de migración de Windows a Linux Mint, dirigido tanto a **usuarios individuales** como a **pequeñas y medianas empresas**. Diseñado con tecnologías web estándar (HTML5, CSS3, JavaScript) para ofrecer una experiencia de usuario excepcional con segmentación inteligente de públicos.
 
 ## Características Principales
 
@@ -169,6 +169,122 @@ php -S localhost:8000
 - [ ] Agregar sistema de comentarios/testimonios
 - [ ] Integrar formulario de contacto con backend
 - [ ] Implementar analytics y seguimiento de conversiones
+
+---
+
+## 🏢 Estrategia Dual: Público General + Empresas
+
+### Objetivo
+Ofrecer el servicio de migración a **dos públicos objetivo** sin recargar el sitio web, manteniendo un diseño limpio y una experiencia de usuario óptima para ambos segmentos.
+
+### Públicos Objetivo
+
+#### 👤 Usuarios Individuales
+- Personas con notebooks viejas que no soportan Windows
+- Usuarios de PC de hogar que buscan alternativas gratuitas
+- Estudiantes y usuarios que quieren ahorrar en licencias
+
+#### 🏢 Pequeñas y Medianas Empresas
+- Empresas con 2-50 equipos
+- Oficinas administrativas (contabilidad, RRHH, ventas)
+- Estudios profesionales (abogados, arquitectos, contadores)
+- Comercios y talleres
+
+### Implementaciones Clave
+
+#### 1. **Hero Section con CTAs Diferenciados**
+- Mensaje principal inclusivo para ambos públicos
+- Dos botones de llamada a la acción:
+  - `[Uso Personal]` → Formulario de contacto estándar
+  - `[Para mi Empresa]` → Formulario con campos empresariales
+
+#### 2. **Sección "¿Quién Puede Migrar?"**
+- Dos tarjetas lado a lado (responsive)
+- Segmentación visual clara sin duplicar contenido
+- CTAs específicos para cada público
+
+#### 3. **Calculadora de Ahorro con Toggle**
+- Modo Personal: 1-3 equipos, ahorro básico
+- Modo Empresa: 5-100 equipos, ROI y ahorro anual
+- Una sola herramienta, dos experiencias
+
+#### 4. **Testimonios Mixtos**
+- 50% testimonios de usuarios individuales
+- 50% testimonios de pequeñas empresas
+- Formato discreto que no satura
+
+#### 5. **FAQ Empresarial**
+- Nueva categoría "Para Empresas" en la página FAQ
+- 5-7 preguntas específicas sobre:
+  - Cantidad de equipos que se pueden migrar
+  - Capacitación para empleados
+  - Compatibilidad de software empresarial
+  - Soporte post-migración
+  - Pruebas piloto
+
+#### 6. **Formulario de Contacto Inteligente**
+- Campo selector: "Tipo de consulta"
+- Campos dinámicos según selección:
+  - Personal: Nombre, Email, Teléfono, Mensaje
+  - Empresarial: + Empresa, Cantidad de equipos, Industria
+
+#### 7. **Banner Temporal Dinámico**
+- Detección automática de fecha actual
+- **ANTES de octubre 2025**: "Windows 10 pierde soporte en oct 2025 - Migra ya"
+- **DESPUÉS de octubre 2025**: "Windows 10 sin soporte - Tu equipo está en riesgo"
+- Banner dismissible que no interrumpe la experiencia
+
+#### 8. **Página Empresas (Opcional)**
+- `empresas.html` con contenido específico B2B
+- Calculadora de ROI empresarial
+- Casos de éxito detallados
+- Proceso de migración empresarial (5 pasos)
+- FAQ empresarial expandido
+- Formulario de auditoría gratuita
+
+### Principios de Diseño
+
+#### "Menos es Más"
+- Mantener diseño limpio y minimalista actual
+- Segmentación mediante **CTAs inteligentes**, no contenido duplicado
+- Cada público encuentra su camino sin saturar al otro
+
+#### Segmentación Sutil
+- No recargar con información redundante
+- Puntos de entrada diferenciados
+- Contenido compartido con doble lectura cuando es posible
+
+#### Mensajes Dinámicos
+- Adaptación automática según contexto (fecha, tipo de usuario)
+- Sin intervención manual para actualizaciones temporales
+- Experiencia personalizada sin complejidad técnica
+
+### Beneficios de esta Estrategia
+
+✅ **Para el Negocio:**
+- Amplía el mercado objetivo sin crear sitios separados
+- Mejor conversión con CTAs específicos
+- Posicionamiento profesional para ambos segmentos
+
+✅ **Para los Usuarios:**
+- Experiencia limpia sin sobrecarga de información
+- Navegación intuitiva hacia contenido relevante
+- Mensajes personalizados según necesidades
+
+✅ **Para el Desarrollo:**
+- Mantenimiento centralizado
+- Código reutilizable
+- Escalabilidad futura
+
+### Métricas de Éxito
+
+- **Tasa de conversión** por tipo de público
+- **Tiempo en página** de secciones empresariales vs personales
+- **Uso de calculadora** en modo personal vs empresarial
+- **Formularios completados** por segmento
+- **Tasa de rebote** comparativa
+
+---
 
 ## Contacto y Soporte
 

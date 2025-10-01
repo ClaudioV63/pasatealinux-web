@@ -656,3 +656,252 @@ if (cerrarModalVisual) {
     });
 }
 // --- Fin de funcionalidad slider visual y tema ---
+
+// ========================================
+// FUNCIONALIDAD ESTRATEGIA DUAL (EMPRESAS + PERSONAL)
+// ========================================
+
+/**
+ * Banner Temporal Dinámico
+ * Muestra mensaje diferente según la fecha actual vs fecha fin de soporte Windows 10
+ */
+function inicializarBannerTemporal() {
+    const banner = document.getElementById('bannerTemporal');
+    const mensajeBanner = document.getElementById('mensajeBanner');
+    const cerrarBanner = document.getElementById('cerrarBanner');
+    
+    if (!banner || !mensajeBanner) return;
+    
+    // Fecha de fin de soporte de Windows 10: 14 de octubre de 2025
+    const fechaFinSoporte = new Date('2025-10-14');
+    const fechaActual = new Date();
+    
+    // Verificar si el usuario ya cerró el banner (guardado en localStorage)
+    const bannerCerrado = localStorage.getItem('bannerTemporalCerrado');
+    
+    if (bannerCerrado === 'true') {
+        banner.classList.add('oculto');
+        return;
+    }
+    
+    // Determinar mensaje según la fecha
+    if (fechaActual < fechaFinSoporte) {
+        // ANTES del fin de soporte
+        const diasRestantes = Math.ceil((fechaFinSoporte - fechaActual) / (1000 * 60 * 60 * 24));
+        mensajeBanner.textContent = `⚠️ Windows 10 pierde soporte en octubre 2025 (${diasRestantes} días restantes) - Migra a Linux ahora y protege tus datos`;
+    } else {
+        // DESPUÉS del fin de soporte
+        const diasSinSoporte = Math.ceil((fechaActual - fechaFinSoporte) / (1000 * 60 * 60 * 24));
+        mensajeBanner.textContent = `🚨 Windows 10 ya NO tiene soporte (${diasSinSoporte} días sin actualizaciones de seguridad) - Tu equipo está en riesgo`;
+        banner.style.background = 'linear-gradient(135deg, #ff4757 0%, #ff6b35 100%)';
+    }
+    
+    // Funcionalidad de cerrar banner
+    if (cerrarBanner) {
+        cerrarBanner.addEventListener('click', function() {
+            banner.classList.add('oculto');
+            localStorage.setItem('bannerTemporalCerrado', 'true');
+        });
+    }
+}
+
+/**
+ * Gestión de CTAs diferenciados (Personal vs Empresa)
+ * Guarda la preferencia del usuario para personalizar la experiencia
+ */
+function inicializarCTAsDiferenciados() {
+    const botones = document.querySelectorAll('[data-tipo]');
+    
+    botones.forEach(boton => {
+        boton.addEventListener('click', function(e) {
+            const tipo = this.getAttribute('data-tipo');
+            
+            // Guardar preferencia en sessionStorage
+            if (tipo) {
+                sessionStorage.setItem('tipoConsulta', tipo);
+                
+                // Opcional: Scroll suave al formulario de contacto
+                const contacto = document.getElementById('contacto');
+                if (contacto && this.getAttribute('href') === '#contacto') {
+                    e.preventDefault();
+                    contacto.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+}
+
+/**
+ * Personalizar formulario de contacto según tipo de consulta
+ * (Esta función se activará cuando el formulario esté implementado)
+ */
+function personalizarFormularioContacto() {
+    const tipoConsulta = sessionStorage.getItem('tipoConsulta');
+    
+    if (!tipoConsulta) return;
+    
+    // Aquí se puede agregar lógica para mostrar campos adicionales
+    // según si es consulta personal o empresarial
+    console.log('Tipo de consulta seleccionado:', tipoConsulta);
+    
+    // Ejemplo: Agregar campos empresariales si el tipo es 'empresa'
+    // Esta funcionalidad se puede expandir cuando el formulario esté activo
+}
+
+/**
+ * Calculadora de Ahorro Interactiva
+ * Calcula ahorro en tiempo real según cantidad de equipos
+ */
+function inicializarCalculadoraAhorro() {
+    const botonesToggle = document.querySelectorAll('.boton-toggle');
+    const calculadoraPersonal = document.querySelector('.calculadora-personal');
+    const calculadoraEmpresa = document.querySelector('.calculadora-empresa');
+    const inputPersonal = document.getElementById('equiposPersonal');
+    const inputEmpresa = document.getElementById('equiposEmpresa');
+    
+    if (!botonesToggle.length) return;
+    
+    // Precios base (USD) - Actualizados según precios Argentina 2025
+    const PRECIOS = {
+        personal: {
+            windows: 204,  // Windows 11 Home
+            office: 42,    // Microsoft 365 Personal (anual)
+            antivirus: 40
+        },
+        empresa: {
+            windows: 295,  // Windows 11 Pro
+            office: 150,   // Microsoft 365 Empresa Estándar (USD 12.50/mes x 12)
+            antivirus: 50
+        }
+    };
+    
+    // Toggle entre Personal y Empresa
+    botonesToggle.forEach(boton => {
+        boton.addEventListener('click', function() {
+            const modo = this.getAttribute('data-modo');
+            
+            // Actualizar botones
+            botonesToggle.forEach(b => b.classList.remove('activo'));
+            this.classList.add('activo');
+            
+            // Mostrar calculadora correspondiente
+            if (modo === 'personal') {
+                calculadoraPersonal.classList.add('activa');
+                calculadoraEmpresa.classList.remove('activa');
+            } else {
+                calculadoraPersonal.classList.remove('activa');
+                calculadoraEmpresa.classList.add('activa');
+            }
+        });
+    });
+    
+    // Calcular ahorro personal
+    function calcularAhorroPersonal() {
+        const equipos = parseInt(inputPersonal.value) || 1;
+        
+        const costoWindows = PRECIOS.personal.windows * equipos;
+        const costoOffice = PRECIOS.personal.office * equipos;
+        const costoAntivirus = PRECIOS.personal.antivirus * equipos;
+        const total = costoWindows + costoOffice + costoAntivirus;
+        
+        document.getElementById('costoWindowsPersonal').textContent = `$${costoWindows}`;
+        document.getElementById('costoOfficePersonal').textContent = `$${costoOffice}`;
+        document.getElementById('costoAntivirusPersonal').textContent = `$${costoAntivirus}`;
+        document.getElementById('totalPersonal').textContent = `$${total} USD`;
+    }
+    
+    // Calcular ahorro empresarial
+    function calcularAhorroEmpresa() {
+        const equipos = parseInt(inputEmpresa.value) || 10;
+        
+        const costoWindows = PRECIOS.empresa.windows * equipos;
+        const costoOffice = PRECIOS.empresa.office * equipos;
+        const costoAntivirus = PRECIOS.empresa.antivirus * equipos;
+        const totalAnual = costoWindows + costoOffice + costoAntivirus;
+        const totalTresAnios = totalAnual * 3;
+        
+        document.getElementById('costoWindowsEmpresa').textContent = `$${costoWindows.toLocaleString()}`;
+        document.getElementById('costoOfficeEmpresa').textContent = `$${costoOffice.toLocaleString()}`;
+        document.getElementById('costoAntivirusEmpresa').textContent = `$${costoAntivirus.toLocaleString()}`;
+        document.getElementById('totalEmpresa').textContent = `$${totalAnual.toLocaleString()} USD`;
+        document.getElementById('roiEmpresa').textContent = `$${totalTresAnios.toLocaleString()} USD`;
+    }
+    
+    // Event listeners para inputs
+    if (inputPersonal) {
+        inputPersonal.addEventListener('input', calcularAhorroPersonal);
+        calcularAhorroPersonal(); // Calcular inicial
+    }
+    
+    if (inputEmpresa) {
+        inputEmpresa.addEventListener('input', calcularAhorroEmpresa);
+        calcularAhorroEmpresa(); // Calcular inicial
+    }
+}
+
+/**
+ * Tracking de eventos para Analytics
+ * Registra interacciones clave del usuario
+ */
+function inicializarAnalytics() {
+    // Verificar si Google Analytics está disponible
+    if (typeof gtag === 'undefined') return;
+    
+    // Track: Click en CTAs diferenciados
+    document.querySelectorAll('[data-tipo]').forEach(boton => {
+        boton.addEventListener('click', function() {
+            const tipo = this.getAttribute('data-tipo');
+            gtag('event', 'cta_click', {
+                'event_category': 'Conversión',
+                'event_label': tipo === 'personal' ? 'CTA Personal' : 'CTA Empresa',
+                'value': tipo
+            });
+        });
+    });
+    
+    // Track: Uso de calculadora
+    const inputCalculadora = document.querySelectorAll('.input-equipos');
+    inputCalculadora.forEach(input => {
+        input.addEventListener('change', function() {
+            const modo = this.id.includes('Personal') ? 'personal' : 'empresa';
+            const equipos = this.value;
+            gtag('event', 'calculadora_uso', {
+                'event_category': 'Engagement',
+                'event_label': `Calculadora ${modo}`,
+                'value': equipos
+            });
+        });
+    });
+    
+    // Track: Toggle calculadora
+    document.querySelectorAll('.boton-toggle').forEach(boton => {
+        boton.addEventListener('click', function() {
+            const modo = this.getAttribute('data-modo');
+            gtag('event', 'toggle_calculadora', {
+                'event_category': 'Engagement',
+                'event_label': `Modo ${modo}`,
+                'value': modo
+            });
+        });
+    });
+    
+    // Track: Cierre de banner
+    const cerrarBanner = document.getElementById('cerrarBanner');
+    if (cerrarBanner) {
+        cerrarBanner.addEventListener('click', function() {
+            gtag('event', 'banner_cerrado', {
+                'event_category': 'Engagement',
+                'event_label': 'Banner temporal cerrado'
+            });
+        });
+    }
+}
+
+// Inicializar funcionalidades al cargar el DOM
+document.addEventListener('DOMContentLoaded', function() {
+    inicializarBannerTemporal();
+    inicializarCTAsDiferenciados();
+    personalizarFormularioContacto();
+    inicializarCalculadoraAhorro();
+    inicializarAnalytics();
+});
