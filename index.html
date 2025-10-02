@@ -30,17 +30,6 @@
 </head>
 
 <body>
-    <!-- Banner Temporal Dinámico -->
-    <div id="bannerTemporal" class="banner-temporal">
-        <div class="contenedor-banner">
-            <i class="fas fa-exclamation-triangle icono-banner"></i>
-            <span id="mensajeBanner" class="mensaje-banner">Cargando...</span>
-            <button id="cerrarBanner" class="cerrar-banner" aria-label="Cerrar banner">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
     <!-- Navegación -->
     <nav class="navegacion">
         <div class="contenedor-nav">
@@ -80,17 +69,10 @@
                     </h1>
                     <p class="subtitulo-hero">
                         <i class="fas fa-exclamation-triangle icono-alerta"></i>
-                        <strong>Windows 10 dejará de tener soporte en octubre de 2025.</strong>
-                        Todos tus equipos quedarán expuestos a virus, fallas y pérdida de datos.
+                        <strong>🚨 Windows 10 ya NO recibe actualizaciones de seguridad.</strong>
+                        Han pasado <span id="diasSinSoporte" class="contador-dias">...</span> días sin parches de seguridad.
+                        Tu equipo está expuesto a virus, hackeos y pérdida de datos. <strong>Migra a Linux Mint ahora.</strong>
                     </p>
-
-                    <div class="alerta-urgencia">
-                        <i class="fas fa-clock icono-alerta"></i>
-                        <div class="texto-alerta">
-                            <strong>Tiempo restante para el fin de soporte de Windows 10:</strong><br>
-                            <span id="diasRestantes" class="contador-dias">Calculando...</span>
-                        </div>
-                    </div>
 
                     <p class="descripcion-hero">Actualizar a Windows 11 podría significar que tengas que comprar un
                         equipo nuevo.
@@ -181,6 +163,7 @@
     -->
 
     <!-- Nueva sección: Mensajes destacados de ahorro -->
+    <!--
     <section class="seccion-mensajes-destacados">
         <div class="contenedor">
             <div class="mensajes-destacados">
@@ -190,8 +173,7 @@
                         invertís en Linux! Con nuestro servicio, recuperás tu equipo y tu bolsillo te lo agradece.
                     </p>
                 </div>
-                <!--
-                -->
+
                 <div class="mensaje-destacado">
                     <p class="texto-destacado-ahorro">
                         <strong>Tu vieja notebook: ¡mejor que nueva!</strong> Aún si elegís comprar un equipo de última
@@ -202,6 +184,8 @@
             </div>
         </div>
     </section>
+    -->
+
 
     <!-- Sección ¿Quién Puede Migrar? -->
     <section class="seccion-quien-migrar">

@@ -516,35 +516,28 @@ function precargarImagenes() {
 // Inicializar precarga cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', precargarImagenes);
 
-// Función para calcular días restantes hasta octubre 2025
-function calcularDiasRestantes() {
-    const fechaLimite = new Date('2025-10-14'); // Fecha estimada de fin de soporte
+// Función para calcular días SIN soporte desde octubre 2025
+function calcularDiasSinSoporte() {
+    const fechaFinSoporte = new Date('2025-10-14'); // Fecha de fin de soporte Windows 10
     const fechaActual = new Date();
-    const diferencia = fechaLimite - fechaActual;
+    const diferencia = fechaActual - fechaFinSoporte;
     
-    if (diferencia <= 0) {
-        return 'El soporte ya terminó';
+    // Si aún no llegó la fecha, mostrar 0
+    if (diferencia < 0) {
+        return '0';
     }
     
     const dias = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
-    const meses = Math.floor(dias / 30);
     
-    if (meses > 12) {
-        const años = Math.floor(meses / 12);
-        const mesesRestantes = meses % 12;
-        return `${años} año${años > 1 ? 's' : ''} y ${mesesRestantes} mes${mesesRestantes !== 1 ? 'es' : ''}`;
-    } else if (meses > 0) {
-        return `${meses} mes${meses !== 1 ? 'es' : ''}`;
-    } else {
-        return `${dias} día${dias !== 1 ? 's' : ''}`;
-    }
+    // Formatear con separador de miles
+    return dias.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-// Actualizar contador de días
+// Actualizar contador de días sin soporte
 function actualizarContadorDias() {
-    const elementoDias = document.getElementById('diasRestantes');
+    const elementoDias = document.getElementById('diasSinSoporte');
     if (elementoDias) {
-        elementoDias.textContent = calcularDiasRestantes();
+        elementoDias.textContent = calcularDiasSinSoporte();
     }
 }
 
@@ -658,52 +651,236 @@ if (cerrarModalVisual) {
 // --- Fin de funcionalidad slider visual y tema ---
 
 // ========================================
-// FUNCIONALIDAD ESTRATEGIA DUAL (EMPRESAS + PERSONAL)
+// FUNCIONALIDAD PÁGINA TUTORIALES
 // ========================================
 
 /**
- * Banner Temporal Dinámico
- * Muestra mensaje diferente según la fecha actual vs fecha fin de soporte Windows 10
+ * Inicializar funcionalidad de categorías de tutoriales
+ * Maneja el scroll suave a las secciones correspondientes
  */
-function inicializarBannerTemporal() {
-    const banner = document.getElementById('bannerTemporal');
-    const mensajeBanner = document.getElementById('mensajeBanner');
-    const cerrarBanner = document.getElementById('cerrarBanner');
+function inicializarCategoriasTutoriales() {
+    const botonesCategorias = document.querySelectorAll('.categoria-tutorial');
     
-    if (!banner || !mensajeBanner) return;
+    if (!botonesCategorias.length) return;
     
-    // Fecha de fin de soporte de Windows 10: 14 de octubre de 2025
-    const fechaFinSoporte = new Date('2025-10-14');
-    const fechaActual = new Date();
+    botonesCategorias.forEach(boton => {
+        boton.addEventListener('click', function() {
+            // Remover clase activa de todos los botones
+            botonesCategorias.forEach(b => b.classList.remove('activa'));
+            
+            // Agregar clase activa al botón clickeado
+            this.classList.add('activa');
+            
+            // Obtener el ID de la sección
+            const idSeccion = this.getAttribute('data-seccion');
+            const seccion = document.getElementById(idSeccion);
+            
+            if (seccion) {
+                // Calcular offset de la navegación
+                const navegacion = document.querySelector('.navegacion');
+                const offset = navegacion ? navegacion.offsetHeight + 10 : 100;
+                const posicionTop = seccion.getBoundingClientRect().top + window.scrollY - offset;
+                
+                // Scroll suave a la sección
+                window.scrollTo({ 
+                    top: posicionTop, 
+                    behavior: 'smooth' 
+                });
+            }
+        });
+    });
+}
+
+/**
+ * Pausar otros videos cuando se reproduce uno
+ * Optimización para evitar múltiples reproducciones simultáneas
+ */
+function inicializarControlVideos() {
+    const videos = document.querySelectorAll('.seccion-videos video');
     
-    // Verificar si el usuario ya cerró el banner (guardado en localStorage)
-    const bannerCerrado = localStorage.getItem('bannerTemporalCerrado');
+    if (!videos.length) return;
     
-    if (bannerCerrado === 'true') {
-        banner.classList.add('oculto');
+    videos.forEach(video => {
+        video.addEventListener('play', function() {
+            // Pausar todos los demás videos
+            videos.forEach(otroVideo => {
+                if (otroVideo !== video) {
+                    otroVideo.pause();
+                }
+            });
+        });
+    });
+}
+
+/**
+ * Sistema de paginación para videos
+ * Configuración: 6 videos por página
+ */
+function inicializarPaginacionVideos() {
+    const VIDEOS_POR_PAGINA = 6;
+    let paginaActual = 1;
+    
+    const contenedorVideos = document.getElementById('contenedorVideos');
+    const paginacionVideos = document.getElementById('paginacionVideos');
+    const btnAnterior = document.getElementById('btnAnterior');
+    const btnSiguiente = document.getElementById('btnSiguiente');
+    const numerosPagina = document.getElementById('numerosPagina');
+    
+    if (!contenedorVideos || !paginacionVideos) return;
+    
+    // Obtener todos los videos
+    const todosLosVideos = Array.from(contenedorVideos.querySelectorAll('.video-tutorial'));
+    
+    // Si hay 6 o menos videos, no mostrar paginación
+    if (todosLosVideos.length <= VIDEOS_POR_PAGINA) {
+        paginacionVideos.style.display = 'none';
         return;
     }
     
-    // Determinar mensaje según la fecha
-    if (fechaActual < fechaFinSoporte) {
-        // ANTES del fin de soporte
-        const diasRestantes = Math.ceil((fechaFinSoporte - fechaActual) / (1000 * 60 * 60 * 24));
-        mensajeBanner.textContent = `⚠️ Windows 10 pierde soporte en octubre 2025 (${diasRestantes} días restantes) - Migra a Linux ahora y protege tus datos`;
-    } else {
-        // DESPUÉS del fin de soporte
-        const diasSinSoporte = Math.ceil((fechaActual - fechaFinSoporte) / (1000 * 60 * 60 * 24));
-        mensajeBanner.textContent = `🚨 Windows 10 ya NO tiene soporte (${diasSinSoporte} días sin actualizaciones de seguridad) - Tu equipo está en riesgo`;
-        banner.style.background = 'linear-gradient(135deg, #ff4757 0%, #ff6b35 100%)';
+    // Calcular total de páginas
+    const totalPaginas = Math.ceil(todosLosVideos.length / VIDEOS_POR_PAGINA);
+    
+    /**
+     * Mostrar videos de la página actual
+     */
+    function mostrarPagina(numeroPagina) {
+        // Pausar todos los videos antes de cambiar de página
+        todosLosVideos.forEach(videoArticle => {
+            const video = videoArticle.querySelector('video');
+            if (video) video.pause();
+        });
+        
+        // Ocultar todos los videos
+        todosLosVideos.forEach(video => video.classList.add('oculto'));
+        
+        // Calcular rango de videos a mostrar
+        const inicio = (numeroPagina - 1) * VIDEOS_POR_PAGINA;
+        const fin = inicio + VIDEOS_POR_PAGINA;
+        
+        // Mostrar videos de la página actual
+        todosLosVideos.slice(inicio, fin).forEach(video => {
+            video.classList.remove('oculto');
+        });
+        
+        // Actualizar página actual
+        paginaActual = numeroPagina;
+        
+        // Actualizar botones
+        actualizarBotones();
+        
+        // Actualizar números de página
+        generarNumerosPagina();
+        
+        // Scroll suave a la sección de videos
+        const seccionVideos = document.getElementById('videos');
+        if (seccionVideos) {
+            const navegacion = document.querySelector('.navegacion');
+            const offset = navegacion ? navegacion.offsetHeight + 20 : 120;
+            const posicionTop = seccionVideos.getBoundingClientRect().top + window.scrollY - offset;
+            
+            window.scrollTo({ 
+                top: posicionTop, 
+                behavior: 'smooth' 
+            });
+        }
     }
     
-    // Funcionalidad de cerrar banner
-    if (cerrarBanner) {
-        cerrarBanner.addEventListener('click', function() {
-            banner.classList.add('oculto');
-            localStorage.setItem('bannerTemporalCerrado', 'true');
+    /**
+     * Actualizar estado de botones anterior/siguiente
+     */
+    function actualizarBotones() {
+        if (btnAnterior) {
+            btnAnterior.disabled = paginaActual === 1;
+        }
+        
+        if (btnSiguiente) {
+            btnSiguiente.disabled = paginaActual === totalPaginas;
+        }
+    }
+    
+    /**
+     * Generar números de página dinámicamente
+     */
+    function generarNumerosPagina() {
+        if (!numerosPagina) return;
+        
+        numerosPagina.innerHTML = '';
+        
+        // Lógica para mostrar números de página con puntos suspensivos
+        const maxNumerosMostrar = 5;
+        let numerosAMostrar = [];
+        
+        if (totalPaginas <= maxNumerosMostrar) {
+            // Mostrar todas las páginas
+            numerosAMostrar = Array.from({ length: totalPaginas }, (_, i) => i + 1);
+        } else {
+            // Mostrar con puntos suspensivos
+            if (paginaActual <= 3) {
+                numerosAMostrar = [1, 2, 3, 4, '...', totalPaginas];
+            } else if (paginaActual >= totalPaginas - 2) {
+                numerosAMostrar = [1, '...', totalPaginas - 3, totalPaginas - 2, totalPaginas - 1, totalPaginas];
+            } else {
+                numerosAMostrar = [1, '...', paginaActual - 1, paginaActual, paginaActual + 1, '...', totalPaginas];
+            }
+        }
+        
+        // Crear botones de número de página
+        numerosAMostrar.forEach(numero => {
+            if (numero === '...') {
+                const puntos = document.createElement('span');
+                puntos.className = 'puntos-suspensivos';
+                puntos.textContent = '...';
+                numerosPagina.appendChild(puntos);
+            } else {
+                const boton = document.createElement('button');
+                boton.className = 'numero-pagina';
+                boton.textContent = numero;
+                boton.setAttribute('aria-label', `Ir a página ${numero}`);
+                
+                if (numero === paginaActual) {
+                    boton.classList.add('activo');
+                    boton.setAttribute('aria-current', 'page');
+                }
+                
+                boton.addEventListener('click', () => mostrarPagina(numero));
+                numerosPagina.appendChild(boton);
+            }
         });
     }
+    
+    // Event listeners para botones anterior/siguiente
+    if (btnAnterior) {
+        btnAnterior.addEventListener('click', () => {
+            if (paginaActual > 1) {
+                mostrarPagina(paginaActual - 1);
+            }
+        });
+    }
+    
+    if (btnSiguiente) {
+        btnSiguiente.addEventListener('click', () => {
+            if (paginaActual < totalPaginas) {
+                mostrarPagina(paginaActual + 1);
+            }
+        });
+    }
+    
+    // Inicializar mostrando la primera página
+    mostrarPagina(1);
 }
+
+// Inicializar funcionalidad de tutoriales cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    inicializarCategoriasTutoriales();
+    inicializarControlVideos();
+    inicializarPaginacionVideos();
+});
+
+// --- Fin de funcionalidad slider visual y tema ---
+
+// ========================================
+// FUNCIONALIDAD ESTRATEGIA DUAL (EMPRESAS + PERSONAL)
+// ========================================
 
 /**
  * Gestión de CTAs diferenciados (Personal vs Empresa)
@@ -884,22 +1061,10 @@ function inicializarAnalytics() {
             });
         });
     });
-    
-    // Track: Cierre de banner
-    const cerrarBanner = document.getElementById('cerrarBanner');
-    if (cerrarBanner) {
-        cerrarBanner.addEventListener('click', function() {
-            gtag('event', 'banner_cerrado', {
-                'event_category': 'Engagement',
-                'event_label': 'Banner temporal cerrado'
-            });
-        });
-    }
 }
 
 // Inicializar funcionalidades al cargar el DOM
 document.addEventListener('DOMContentLoaded', function() {
-    inicializarBannerTemporal();
     inicializarCTAsDiferenciados();
     personalizarFormularioContacto();
     inicializarCalculadoraAhorro();

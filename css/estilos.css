@@ -861,22 +861,43 @@ body {
     font-size: var(--texto-xl);
     margin-bottom: 4rem;
     line-height: 1.6;
-    background: var(--fondo-subtitulo-hero, rgba(0, 212, 170, 0.1)); /* Variable */
-    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(255, 140, 90, 0.12) 100%);
+    padding: 1.5rem 2rem;
     border-radius: var(--radio-lg);
-    border-left: 4px solid var(--color-advertencia);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--borde-subtitulo-hero, rgba(0, 212, 170, 0.2)); /* Variable */
+    border: 3px solid var(--color-advertencia);
+    border-left: 6px solid var(--color-advertencia);
+    backdrop-filter: blur(15px);
     font-family: var(--fuente-principal);
     font-weight: 500;
-    color: var(--texto-subtitulo-hero, white); /* Variable */
+    color: white;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+    animation: pulseUrgentSubtitle 3s ease-in-out infinite;
+}
+
+@keyframes pulseUrgentSubtitle {
+    0%, 100% { 
+        box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        border-color: var(--color-advertencia);
+    }
+    50% { 
+        box-shadow: 0 4px 30px rgba(255, 107, 53, 0.5);
+        border-color: #ff8c5a;
+    }
 }
 
 .subtitulo-hero .icono-alerta {
     color: var(--color-advertencia);
     margin-right: 0.5rem;
     font-size: var(--texto-lg);
-    filter: drop-shadow(0 2px 4px rgba(255, 107, 53, 0.3));
+    filter: drop-shadow(0 2px 4px rgba(255, 107, 53, 0.4));
+    animation: shake 3s ease-in-out infinite;
+}
+
+.subtitulo-hero .contador-dias {
+    font-weight: 700;
+    color: var(--color-advertencia);
+    font-size: 1.1em;
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
 }
 
 .descripcion-hero {
@@ -1018,21 +1039,41 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    background: rgba(255, 107, 53, 0.07);
-    border: 2px solid var(--color-advertencia);
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(255, 140, 90, 0.12) 100%);
+    border: 3px solid var(--color-advertencia);
+    border-left: 6px solid var(--color-advertencia);
     padding: 1.5rem;
     border-radius: var(--radio-lg);
     backdrop-filter: blur(15px);
-    animation: pulse 3s infinite;
+    animation: pulseUrgent 2s ease-in-out infinite;
     font-family: var(--fuente-principal);
     margin-bottom: 50px;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+}
+
+@keyframes pulseUrgent {
+    0%, 100% { 
+        box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        border-color: var(--color-advertencia);
+    }
+    50% { 
+        box-shadow: 0 4px 30px rgba(255, 107, 53, 0.5);
+        border-color: #ff8c5a;
+    }
 }
 
 .alerta-urgencia .icono-alerta {
     font-size: var(--texto-xl);
-    color: black;
-    filter: drop-shadow(0 2px 4px rgba(255, 107, 53, 0.3));
+    color: var(--color-advertencia);
+    filter: drop-shadow(0 2px 4px rgba(255, 107, 53, 0.4));
     min-width: 24px;
+    animation: shake 3s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
 }
 
 .texto-alerta {
@@ -1112,7 +1153,7 @@ body {
 /* Sección Beneficios */
 .seccion-beneficios {
     padding: 80px 0;
-    background: var(--fondo-secundario); /* Fondo gris claro alternado */
+    background: var(--fondo-mensajes-destacados, linear-gradient(135deg, var(--color-gris-800) 0%, var(--color-gris-700) 100%));
     color: var(--texto-beneficios, var(--color-primario)); /* Variable para texto */
 }
 
@@ -2573,6 +2614,15 @@ a:focus {
     background: var(--fondo-principal);
     padding: 60px 0 40px 0;
 }
+
+/* Estilos específicos para página de tutoriales */
+.contenido-tutoriales {
+    padding-top: 110px;
+}
+
+.tarjeta-atajos-teclado {
+    margin-top: 2em;
+}
 .grid-videos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -2607,8 +2657,158 @@ a:focus {
     font-size: var(--texto-base);
     color: var(--color-gris-700);
     text-align: center;
-    margin: 0;
     font-weight: 500;
+    margin-top: 0.75rem;
+}
+
+/* Etiquetas de categoría en videos */
+.etiqueta-categoria {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.etiqueta-primeros-pasos {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.etiqueta-navegacion {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.etiqueta-configuracion {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.etiqueta-personalizacion {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: white;
+}
+
+.etiqueta-uso-diario {
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+    color: white;
+}
+
+.etiqueta-mantenimiento {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    color: #333;
+}
+
+/* Ocultar videos que no corresponden a la página actual */
+.video-tutorial.oculto {
+    display: none;
+}
+
+/* Estilos de paginación de videos */
+.paginacion-videos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+}
+
+.boton-paginacion {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-gris-300);
+    color: var(--color-primario);
+    border: 2px solid var(--color-borde);
+    border-radius: var(--radio-md);
+    font-family: var(--fuente-principal);
+    font-size: var(--texto-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+}
+
+.boton-paginacion:hover:not(:disabled) {
+    background: var(--color-secundario);
+    color: white;
+    border-color: var(--color-secundario);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-media);
+}
+
+.boton-paginacion:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: var(--color-gris-300);
+}
+
+.numeros-pagina {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.numero-pagina {
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background: var(--color-gris-300);
+    color: var(--color-primario);
+    border: 2px solid var(--color-borde);
+    border-radius: var(--radio-md);
+    font-family: var(--fuente-principal);
+    font-size: var(--texto-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+}
+
+.numero-pagina:hover {
+    background: var(--color-secundario);
+    color: white;
+    border-color: var(--color-secundario);
+    transform: scale(1.1);
+}
+
+.numero-pagina.activo {
+    background: var(--color-secundario);
+    color: white;
+    border-color: var(--color-secundario);
+    box-shadow: 0 4px 12px rgba(0, 184, 148, 0.3);
+}
+
+.puntos-suspensivos {
+    color: var(--color-gris-600);
+    font-weight: 700;
+    padding: 0 0.5rem;
+}
+
+/* Responsive para paginación */
+@media (max-width: 768px) {
+    .paginacion-videos {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    
+    .boton-paginacion {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .numero-pagina {
+        min-width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
 }
 
 /* Descargas útiles */
@@ -3606,86 +3806,6 @@ a:focus {
    ESTILOS PARA ESTRATEGIA DUAL (EMPRESAS + PERSONAL)
    ======================================== */
 
-/* --- Banner Temporal Dinámico --- */
-.banner-temporal {
-    background: linear-gradient(135deg, var(--color-advertencia) 0%, #ff8c5a 100%);
-    color: #ffffff;
-    padding: 0.75rem 0;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
-    z-index: var(--z-sticky);
-    animation: slideDown 0.4s ease-out;
-}
-
-@keyframes slideDown {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.banner-temporal.oculto {
-    display: none;
-}
-
-.contenedor-banner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    position: relative;
-}
-
-.icono-banner {
-    font-size: 1.2rem;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-.mensaje-banner {
-    font-weight: 600;
-    font-size: 0.95rem;
-    flex: 1;
-    max-width: 800px;
-}
-
-.cerrar-banner {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: #ffffff;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transicion-normal);
-    position: absolute;
-    right: 1rem;
-}
-
-.cerrar-banner:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-}
-
 /* --- Botones Hero Diferenciados --- */
 .botones-hero {
     display: flex;
@@ -3836,9 +3956,6 @@ a:focus {
 }
 
 /* --- Tema Claro - Ajustes --- */
-:root[data-tema="claro"] .banner-temporal {
-    background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 100%);
-}
 
 :root[data-tema="claro"] .tarjeta-publico {
     background: #ffffff;
@@ -3934,7 +4051,15 @@ a:focus {
     background: var(--fondo-secundario);
     padding: 2rem;
     border-radius: var(--radio-xl);
-    box-shadow: var(--sombra-media);
+    box-shadow: 0 8px 24px rgba(0, 212, 170, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--color-secundario);
+    transition: var(--transicion-normal);
+}
+
+.calculadora-input:hover {
+    box-shadow: 0 12px 32px rgba(0, 212, 170, 0.25), 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    border-color: var(--color-acento);
 }
 
 .calculadora-input label {
@@ -4090,6 +4215,12 @@ a:focus {
 
 :root[data-tema="claro"] .calculadora-input {
     background: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 212, 170, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 2px solid var(--color-secundario);
+}
+
+:root[data-tema="claro"] .calculadora-input:hover {
+    box-shadow: 0 12px 32px rgba(0, 212, 170, 0.2), 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 :root[data-tema="claro"] .calculadora-input label {
@@ -4166,19 +4297,6 @@ a:focus {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-    .banner-temporal {
-        padding: 1rem 0;
-    }
-    
-    .mensaje-banner {
-        font-size: 0.85rem;
-        padding-right: 2rem;
-    }
-    
-    .cerrar-banner {
-        right: 0.5rem;
-    }
-    
     .botones-hero {
         flex-direction: column;
         width: 100%;
