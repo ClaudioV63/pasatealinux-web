@@ -477,6 +477,10 @@
     --texto-nota-reserva: var(--color-advertencia);
     --fondo-nota-reserva: var(--color-gris-800);
     --borde-nota-reserva: var(--color-advertencia);
+    --color-placeholder: rgba(255, 255, 255, 0.4);
+    --fondo-campo-formulario: rgba(255, 255, 255, 0.03);
+    --fondo-option: var(--color-gris-800);
+    --texto-option: var(--color-gris-100);
     --fondo-footer: var(--color-primario);
     --texto-footer: white;
     --fondo-mensajes-destacados: linear-gradient(135deg, var(--color-gris-800) 0%, var(--color-gris-700) 100%);
@@ -588,6 +592,10 @@
     --texto-nota-reserva: #ff6b35;
     --fondo-nota-reserva: #f3f7f6;
     --borde-nota-reserva: #ff6b35;
+    --color-placeholder: rgba(0, 0, 0, 0.4);
+    --fondo-campo-formulario: rgba(0, 0, 0, 0.02);
+    --fondo-option: #ffffff;
+    --texto-option: #0a1628;
     --fondo-footer: #e6f9f4;
     --texto-footer: #0a1628;
     --fondo-mensajes-destacados: linear-gradient(135deg, #e6f9f4 0%, #f3f7f6 100%);
@@ -869,7 +877,7 @@ body {
     backdrop-filter: blur(15px);
     font-family: var(--fuente-principal);
     font-weight: 500;
-    color: white;
+    color: var(--texto-subtitulo-hero);
     box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
     animation: pulseUrgentSubtitle 3s ease-in-out infinite;
 }
@@ -1461,8 +1469,10 @@ body {
     background: var(--fondo-info-contacto, rgba(255, 255, 255, 0.1)); /* Variable */
     padding: 1.5rem;
     border-radius: var(--radio-md);
-    margin-top: 2rem;
+    margin: 2rem auto 0 auto;
     backdrop-filter: blur(10px);
+    max-width: 650px;
+    width: 100%;
 }
 
 .info-contacto p {
@@ -4344,6 +4354,413 @@ a:focus {
     .boton-toggle {
         width: 100%;
         justify-content: center;
+    }
+}
+
+/* ============================================
+   ESTILOS DEL FORMULARIO DE CONTACTO
+   ============================================ */
+
+/* Encabezado del formulario */
+.encabezado-formulario {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.encabezado-formulario h3 {
+    font-size: var(--texto-2xl);
+    color: var(--color-secundario);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.encabezado-formulario h3 i {
+    font-size: var(--texto-xl);
+}
+
+.descripcion-formulario {
+    color: var(--color-texto-secundario);
+    font-size: var(--texto-base);
+}
+
+/* Formulario principal */
+.formulario-contacto {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Grupo de campo especial para tipo de usuario */
+.grupo-campo-tipo-usuario {
+    margin-bottom: 2.5rem;
+}
+
+/* Mensajes informativos para tipos de usuario */
+.mensaje-info-personal,
+.mensaje-info-empresa {
+    background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 212, 170, 0.05));
+    border: 1px solid var(--color-secundario);
+    border-radius: var(--radio-sm);
+    padding: 0.875rem 1rem;
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: var(--texto-sm);
+    color: var(--color-texto);
+    animation: slideDown 0.3s ease;
+}
+
+.mensaje-info-personal i,
+.mensaje-info-empresa i {
+    color: var(--color-secundario);
+    font-size: var(--texto-base);
+    flex-shrink: 0;
+}
+
+.mensaje-info-personal.oculto,
+.mensaje-info-empresa.oculto {
+    display: none;
+}
+
+/* Grid del formulario - Layout vertical en desktop */
+.grid-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Grupo de campo */
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.etiqueta-campo {
+    font-weight: 600;
+    color: var(--color-texto);
+    font-size: var(--texto-sm);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.etiqueta-campo i {
+    color: var(--color-secundario);
+    font-size: var(--texto-base);
+}
+
+/* Campos del formulario */
+.campo-formulario {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--color-borde);
+    border-radius: var(--radio-sm);
+    background: var(--fondo-campo-formulario, rgba(255, 255, 255, 0.03));
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    font-size: var(--texto-base);
+    transition: var(--transicion-normal);
+}
+
+/* Estilos específicos para select */
+.campo-formulario option {
+    background: var(--fondo-option, var(--color-gris-800));
+    color: var(--texto-option, var(--color-gris-100));
+    padding: 0.5rem;
+}
+
+.campo-formulario option:checked,
+.campo-formulario option:hover {
+    background: var(--color-secundario);
+    color: var(--color-primario);
+}
+
+.campo-formulario:focus {
+    outline: none;
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+}
+
+.campo-formulario::placeholder {
+    color: var(--color-placeholder, rgba(255, 255, 255, 0.4));
+    font-style: italic;
+}
+
+.campo-formulario.error {
+    border-color: var(--color-error);
+}
+
+.campo-formulario.valido {
+    border-color: var(--color-exito);
+}
+
+.campo-textarea {
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 1rem;
+}
+
+/* Mensajes de error y ayuda */
+.mensaje-error {
+    color: var(--color-error);
+    font-size: var(--texto-xs);
+    display: none;
+    margin-top: 0.25rem;
+}
+
+.mensaje-error.visible {
+    display: block;
+}
+
+.mensaje-ayuda {
+    color: var(--color-texto-secundario);
+    font-size: var(--texto-xs);
+    font-style: italic;
+}
+
+/* Campos condicionales */
+.campos-condicionales,
+.campos-solo-empresa {
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.campos-condicionales.mostrar,
+.campos-solo-empresa.mostrar {
+    display: block !important;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Resumen de ahorro */
+.resumen-ahorro {
+    background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 212, 170, 0.05));
+    border: 2px solid var(--color-secundario);
+    border-radius: var(--radio-md);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.icono-ahorro {
+    width: 60px;
+    height: 60px;
+    background: var(--color-secundario);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icono-ahorro i {
+    font-size: var(--texto-2xl);
+    color: var(--color-primario);
+}
+
+.texto-ahorro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.etiqueta-ahorro {
+    font-size: var(--texto-sm);
+    color: var(--color-texto-secundario);
+    font-weight: 500;
+}
+
+.valor-ahorro {
+    font-size: var(--texto-3xl);
+    font-weight: 700;
+    color: var(--color-secundario);
+    font-family: var(--fuente-titulos);
+}
+
+/* Nota de privacidad */
+.nota-privacidad {
+    background: var(--fondo-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-sm);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: var(--texto-sm);
+    color: var(--color-texto-secundario);
+}
+
+.nota-privacidad i {
+    color: var(--color-secundario);
+    font-size: var(--texto-base);
+}
+
+/* Honeypot (campo oculto anti-spam) */
+.campo-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+/* Botón de envío */
+.boton-enviar-formulario {
+    width: 100%;
+    background: linear-gradient(135deg, var(--color-secundario), var(--color-acento));
+    color: var(--color-primario);
+    border: none;
+    padding: 1.25rem 2rem;
+    border-radius: var(--radio-md);
+    font-size: var(--texto-lg);
+    font-weight: 700;
+    font-family: var(--fuente-principal);
+    cursor: pointer;
+    transition: var(--transicion-bounce);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.boton-enviar-formulario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--transicion-lenta);
+}
+
+.boton-enviar-formulario:hover::before {
+    left: 100%;
+}
+
+.boton-enviar-formulario:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0, 212, 170, 0.4);
+}
+
+.boton-enviar-formulario:active {
+    transform: translateY(-2px);
+}
+
+.boton-enviar-formulario:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.boton-enviar-formulario.enviando {
+    pointer-events: none;
+}
+
+.boton-enviar-formulario.enviando i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mensaje de estado */
+.mensaje-estado {
+    margin-top: 1.5rem;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radio-md);
+    font-weight: 600;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mensaje-estado.exito {
+    background: rgba(16, 185, 129, 0.1);
+    border: 2px solid var(--color-exito);
+    color: var(--color-exito);
+}
+
+.mensaje-estado.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid var(--color-error);
+    color: var(--color-error);
+}
+
+.mensaje-estado i {
+    margin-right: 0.5rem;
+}
+
+/* Responsive para formulario */
+@media (max-width: 768px) {
+    .info-contacto {
+        max-width: 100%;
+        margin: 1.5rem auto 0 auto;
+        padding: 1rem;
+    }
+
+    .formulario-contacto {
+        max-width: 100%;
+    }
+
+    .resumen-ahorro {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .valor-ahorro {
+        font-size: var(--texto-2xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .encabezado-formulario h3 {
+        font-size: var(--texto-xl);
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .boton-enviar-formulario {
+        padding: 1rem 1.5rem;
+        font-size: var(--texto-base);
     }
 }
 

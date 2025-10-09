@@ -246,6 +246,11 @@ function inicializarFormularios() {
     const formularios = document.querySelectorAll('form');
     
     formularios.forEach(formulario => {
+        // Excluir el formulario de contacto que tiene su propio manejo específico
+        if (formulario.id === 'formularioContacto') {
+            return;
+        }
+        
         formulario.addEventListener('submit', function(e) {
             e.preventDefault();
             

@@ -69,9 +69,16 @@
                     </h1>
                     <p class="subtitulo-hero">
                         <i class="fas fa-exclamation-triangle icono-alerta"></i>
+                        <strong>🚨 Windows 10 ya NO recibirá actualizaciones de seguridad.</strong>
+                        <br>
+                        Tu equipo estará expuesto a virus, hackeos y pérdida de datos. 
+                        <br>
+                        <strong>¡Migra a Linux Mint ahora!</strong>
+                        <!--
                         <strong>🚨 Windows 10 ya NO recibe actualizaciones de seguridad.</strong>
                         Han pasado <span id="diasSinSoporte" class="contador-dias">...</span> días sin parches de seguridad.
                         Tu equipo está expuesto a virus, hackeos y pérdida de datos. <strong>Migra a Linux Mint ahora.</strong>
+                        -->
                     </p>
 
                     <p class="descripcion-hero">Actualizar a Windows 11 podría significar que tengas que comprar un
@@ -728,21 +735,188 @@
                     </span>
                 </div>
 
+                <!-- Formulario de Contacto -->
                 <div class="info-contacto" id="infoContacto">
-                    <p></p>
-                    <p><strong class="nota-reserva">Estamos preparando todo para ayudarte a dar el salto a Linux. Muy
-                            pronto te diremos cómo y dónde.</strong></p>
-                    <p></p>
+                    <div class="encabezado-formulario">
+                        <h3><i class="fas fa-paper-plane"></i> Contactanos Ahora</h3>
+                        <p class="descripcion-formulario">Te respondemos en menos de 24 horas</p>
+                    </div>
+
+                    <form id="formularioContacto" class="formulario-contacto" novalidate>
+                        <!-- Tipo de Usuario -->
+                        <div class="grupo-campo grupo-campo-tipo-usuario">
+                            <label for="tipoUsuario" class="etiqueta-campo">
+                                <i class="fas fa-users"></i> Tipo de Usuario *
+                            </label>
+                            <select id="tipoUsuario" name="tipoUsuario" class="campo-formulario" required>
+                                <option value="personal">Uso Personal</option>
+                                <option value="empresa">Empresa</option>
+                            </select>
+                            <span class="mensaje-error"></span>
+                            
+                            <!-- Mensajes informativos según tipo de usuario -->
+                            <div class="mensaje-info-personal" id="mensajeInfoPersonal">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Por el momento recibimos los equipos en zona de San Isidro, Buenos Aires, Argentina</span>
+                            </div>
+                            
+                            <div class="mensaje-info-empresa oculto" id="mensajeInfoEmpresa">
+                                <i class="fas fa-building"></i>
+                                <span>CABA y Zona Norte de Buenos Aires, Argentina</span>
+                            </div>
+                        </div>
+
+                        <!-- Grid de campos básicos -->
+                        <div class="grid-formulario">
+                            <!-- Nombre -->
+                            <div class="grupo-campo">
+                                <label for="nombre" class="etiqueta-campo">
+                                    <i class="fas fa-user-circle"></i> Nombre Completo *
+                                </label>
+                                <input type="text" id="nombre" name="nombre" class="campo-formulario" 
+                                       placeholder="Tu nombre completo" required minlength="3">
+                                <span class="mensaje-error"></span>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="grupo-campo">
+                                <label for="email" class="etiqueta-campo">
+                                    <i class="fas fa-envelope"></i> Email *
+                                </label>
+                                <input type="email" id="email" name="email" class="campo-formulario" 
+                                       placeholder="tu@email.com" required>
+                                <span class="mensaje-error"></span>
+                            </div>
+
+                            <!-- Teléfono -->
+                            <div class="grupo-campo">
+                                <label for="telefono" class="etiqueta-campo">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp/Teléfono *
+                                </label>
+                                <input type="tel" id="telefono" name="telefono" class="campo-formulario" 
+                                       placeholder="11 1234-5678" required pattern="[0-9\s\-\+\(\)]{8,20}">
+                                <span class="mensaje-error"></span>
+                            </div>
+
+                            <!-- Cantidad de Equipos -->
+                            <div class="grupo-campo">
+                                <label for="cantidadEquipos" class="etiqueta-campo">
+                                    <i class="fas fa-laptop"></i> Cantidad de Equipos *
+                                </label>
+                                <input type="number" id="cantidadEquipos" name="cantidadEquipos" 
+                                       class="campo-formulario" placeholder="1" min="1" max="3" value="1" required>
+                                <span class="mensaje-error"></span>
+                            </div>
+                        </div>
+
+                        <!-- Campos específicos para Empresa (ocultos por defecto) -->
+                        <div id="camposEmpresa" class="campos-condicionales" style="display: none;">
+                            <div class="grid-formulario">
+                                <div class="grupo-campo">
+                                    <label for="nombreEmpresa" class="etiqueta-campo">
+                                        <i class="fas fa-building"></i> Nombre de la Empresa
+                                    </label>
+                                    <input type="text" id="nombreEmpresa" name="nombreEmpresa" 
+                                           class="campo-formulario" placeholder="Nombre de tu empresa">
+                                    <span class="mensaje-error"></span>
+                                </div>
+
+                                <div class="grupo-campo">
+                                    <label for="rubro" class="etiqueta-campo">
+                                        <i class="fas fa-briefcase"></i> Rubro/Actividad
+                                    </label>
+                                    <select id="rubro" name="rubro" class="campo-formulario">
+                                        <option value="">Seleccionar rubro</option>
+                                        <option value="contable">Estudio Contable</option>
+                                        <option value="legal">Estudio Jurídico</option>
+                                        <option value="arquitectura">Arquitectura/Diseño</option>
+                                        <option value="comercio">Comercio</option>
+                                        <option value="salud">Salud</option>
+                                        <option value="educacion">Educación</option>
+                                        <option value="tecnologia">Tecnología</option>
+                                        <option value="otro">Otro</option>
+                                    </select>
+                                    <span class="mensaje-error"></span>
+                                </div>
+                            </div>
+
+                            <div class="grupo-campo">
+                                <label for="softwareCritico" class="etiqueta-campo">
+                                    <i class="fas fa-cogs"></i> Software Crítico que Utilizan
+                                </label>
+                                <input type="text" id="softwareCritico" name="softwareCritico" 
+                                       class="campo-formulario" 
+                                       placeholder="Ej: Sistema de facturación, software contable, etc.">
+                                <span class="mensaje-ayuda">Esto nos ayuda a evaluar la compatibilidad</span>
+                            </div>
+                        </div>
+
+                        <!-- Mensaje/Consulta -->
+                        <div class="grupo-campo">
+                            <label for="mensaje" class="etiqueta-campo">
+                                <i class="fas fa-comment-dots"></i> Mensaje o Consulta
+                            </label>
+                            <textarea id="mensaje" name="mensaje" class="campo-formulario campo-textarea" 
+                                      rows="4" placeholder="Contanos tu situación o hacenos tu consulta..."></textarea>
+                            <span class="mensaje-error"></span>
+                        </div>
+
+                        <!-- Preferencias de Contacto (solo para empresas) -->
+                        <div class="grid-formulario campos-solo-empresa" id="camposPreferencias" style="display: none;">
+                            <div class="grupo-campo">
+                                <label for="preferenciaContacto" class="etiqueta-campo">
+                                    <i class="fas fa-phone-alt"></i> Preferencia de Contacto
+                                </label>
+                                <select id="preferenciaContacto" name="preferenciaContacto" class="campo-formulario">
+                                    <option value="whatsapp">WhatsApp</option>
+                                    <option value="email">Email</option>
+                                    <option value="telefono">Teléfono</option>
+                                </select>
+                            </div>
+
+                            <div class="grupo-campo">
+                                <label for="horarioPreferido" class="etiqueta-campo">
+                                    <i class="fas fa-clock"></i> Horario Preferido
+                                </label>
+                                <select id="horarioPreferido" name="horarioPreferido" class="campo-formulario">
+                                    <option value="manana">Mañana (9-13hs)</option>
+                                    <option value="tarde">Tarde (13-18hs)</option>
+                                    <option value="noche">Noche (18-21hs)</option>
+                                    <option value="cualquiera">Cualquier horario</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Ahorro Estimado (solo para empresas) -->
+                        <div class="resumen-ahorro campos-solo-empresa" id="resumenAhorro" style="display: none;">
+                            <div class="icono-ahorro">
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                            <div class="texto-ahorro">
+                                <span class="etiqueta-ahorro">Tu ahorro estimado:</span>
+                                <span class="valor-ahorro" id="valorAhorroEstimado">$286 USD</span>
+                            </div>
+                        </div>
+
+                        <!-- Nota de privacidad -->
+                        <div class="nota-privacidad">
+                            <i class="fas fa-lock"></i>
+                            <span>Tus datos están seguros. Solo los usamos para contactarte.</span>
+                        </div>
+
+                        <!-- Honeypot (anti-spam) -->
+                        <input type="text" name="website" class="campo-honeypot" tabindex="-1" autocomplete="off">
+
+                        <!-- Botón de envío -->
+                        <button type="submit" class="boton-enviar-formulario" id="botonEnviar">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Enviar Consulta</span>
+                        </button>
+
+                        <!-- Mensaje de estado -->
+                        <div class="mensaje-estado" id="mensajeEstado" style="display: none;"></div>
+                    </form>
                 </div>
-                <!--
-                <div class="info-contacto" id="infoContacto">
-                    <p><strong>Dirección:</strong> Av. XXXXXXXXX, CABA, Argentina <a href="https://maps.google.com/?q=Av.+San+Martín+123,+CABA,+Argentina" target="_blank" rel="noopener noreferrer" class="enlace-mapa"><i class="fas fa-map-marker-alt"></i> Ver en mapa</a></p>
-                    <p><strong>Precio del servicio:</strong> $60.000</p>
-                    <p><strong>Forma de pago:</strong> Mercado Pago</p>
-                    <p class="nota-reserva"><strong>Nota:</strong> No se tomarán equipos sin reserva previa.</p>
-                    <a href="https://cal.com/pasatealinux-ar" target="_blank" class="boton-secundario boton-reservar">Reservar</a>
-                </div>
-                -->
 
             </div>
         </div>
@@ -802,6 +976,7 @@
     <script src="js/main.js"></script>
     <script src="js/testimonios-slider.js"></script>
     <script src="js/slider-ahorro.js"></script>
+    <script src="js/formulario-contacto.js"></script>
 </body>
 
 </html>
