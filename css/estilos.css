@@ -160,7 +160,7 @@
 /* Galería visual de Linux (3x3) */
 .seccion-galeria-visual {
     padding: 60px 0 40px 0;
-    background: var(--fondo-principal); /* Fondo blanco/transparente alternado */
+    background: var(--fondo-secundario); /* Fondo blanco/transparente alternado */
 }
 .galeria-visual-grid {
     display: grid;
@@ -1298,7 +1298,7 @@ body {
 /* Sección Testimonios */
 .seccion-testimonios {
     padding: 80px 0;
-    background: var(--fondo-testimonios, var(--fondo-secundario)); /* Variable */
+    background: var(--fondo-principal, var(--fondo-principal)); /* Variable */
     color: var(--texto-testimonios, var(--color-primario)); /* Variable */
     position: relative;
     overflow: hidden;

@@ -345,15 +345,17 @@
         </div>
     </section>
 
-    <!-- Calculadora de Ahorro -->
+    
+    <!-- Calculadora de Ahorro 
     <section id="calculadora-ahorro" class="seccion-calculadora-ahorro">
         <div class="contenedor">
             <h2 class="titulo-seccion">Calculá tu Ahorro</h2>
             <p class="descripcion-seccion">
                 Descubrí cuánto dinero podés ahorrar migrando a Linux Mint
             </p>
+            -->
 
-            <!-- Toggle Personal/Empresa -->
+            <!-- Toggle Personal/Empresa 
             <div class="toggle-calculadora">
                 <button class="boton-toggle activo" data-modo="personal">
                     <i class="fas fa-user"></i> Uso Personal
@@ -362,8 +364,9 @@
                     <i class="fas fa-building"></i> Empresa
                 </button>
             </div>
+            -->
 
-            <!-- Calculadora Personal -->
+            <!-- Calculadora Personal 
             <div class="calculadora-contenido calculadora-personal activa">
                 <div class="calculadora-grid">
                     <div class="calculadora-input">
@@ -399,8 +402,9 @@
                     </div>
                 </div>
             </div>
+            -->
 
-            <!-- Calculadora Empresa -->
+            <!-- Calculadora Empresa 
             <div class="calculadora-contenido calculadora-empresa">
                 <div class="calculadora-grid">
                     <div class="calculadora-input">
@@ -450,6 +454,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- Galería visual de Linux (3x3) -->
     <section id="galeria-linux-visual" class="seccion-galeria-visual">
@@ -791,15 +796,15 @@
                             <!-- Teléfono -->
                             <div class="grupo-campo">
                                 <label for="telefono" class="etiqueta-campo">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp/Teléfono *
+                                    <i class="fab fa-whatsapp"></i> WhatsApp/Teléfono
                                 </label>
                                 <input type="tel" id="telefono" name="telefono" class="campo-formulario" 
-                                       placeholder="11 1234-5678" required pattern="[0-9\s\-\+\(\)]{8,20}">
+                                       placeholder="11 1234-5678" pattern="[0-9\s\-\+\(\)]{8,20}">
                                 <span class="mensaje-error"></span>
                             </div>
 
-                            <!-- Cantidad de Equipos -->
-                            <div class="grupo-campo">
+                            <!-- Cantidad de Equipos - Oculto para ambos tipos de usuario -->
+                            <div class="grupo-campo campo-oculto-cantidad-equipos" style="display: none;">
                                 <label for="cantidadEquipos" class="etiqueta-campo">
                                     <i class="fas fa-laptop"></i> Cantidad de Equipos *
                                 </label>
@@ -821,7 +826,7 @@
                                     <span class="mensaje-error"></span>
                                 </div>
 
-                                <div class="grupo-campo">
+                                <div class="grupo-campo campo-oculto-empresa-rubro" style="display: none;">
                                     <label for="rubro" class="etiqueta-campo">
                                         <i class="fas fa-briefcase"></i> Rubro/Actividad
                                     </label>
@@ -840,7 +845,7 @@
                                 </div>
                             </div>
 
-                            <div class="grupo-campo">
+                            <div class="grupo-campo campo-oculto-empresa-software" style="display: none;">
                                 <label for="softwareCritico" class="etiqueta-campo">
                                     <i class="fas fa-cogs"></i> Software Crítico que Utilizan
                                 </label>
@@ -861,8 +866,8 @@
                             <span class="mensaje-error"></span>
                         </div>
 
-                        <!-- Preferencias de Contacto (solo para empresas) -->
-                        <div class="grid-formulario campos-solo-empresa" id="camposPreferencias" style="display: none;">
+                        <!-- Preferencias de Contacto (oculto para empresas) -->
+                        <div class="grid-formulario campos-solo-empresa campo-oculto-empresa-preferencias" id="camposPreferencias" style="display: none;">
                             <div class="grupo-campo">
                                 <label for="preferenciaContacto" class="etiqueta-campo">
                                     <i class="fas fa-phone-alt"></i> Preferencia de Contacto
@@ -887,8 +892,8 @@
                             </div>
                         </div>
 
-                        <!-- Ahorro Estimado (solo para empresas) -->
-                        <div class="resumen-ahorro campos-solo-empresa" id="resumenAhorro" style="display: none;">
+                        <!-- Ahorro Estimado (oculto para empresas) -->
+                        <div class="resumen-ahorro campos-solo-empresa campo-oculto-empresa-ahorro" id="resumenAhorro" style="display: none;">
                             <div class="icono-ahorro">
                                 <i class="fas fa-piggy-bank"></i>
                             </div>

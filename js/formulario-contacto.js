@@ -173,19 +173,19 @@
 
         // Mostrar/ocultar campos según tipo de usuario
         if (tipo === 'empresa') {
-            // Mostrar campos de empresa
+            // Mostrar solo el campo nombre de empresa (los demás campos específicos de empresa permanecen ocultos)
             elementos.camposEmpresa.style.display = 'block';
             elementos.camposEmpresa.classList.add('mostrar');
             
-            // Mostrar preferencias de contacto y ahorro estimado
+            // MANTENER OCULTOS: preferencias de contacto y ahorro estimado para empresas
             if (elementos.camposPreferencias) {
-                elementos.camposPreferencias.style.display = 'flex';
+                elementos.camposPreferencias.style.display = 'none';
             }
             if (elementos.resumenAhorro) {
-                elementos.resumenAhorro.style.display = 'flex';
+                elementos.resumenAhorro.style.display = 'none';
             }
             
-            // Configurar cantidad de equipos para empresa
+            // Configurar cantidad de equipos para empresa (campo oculto pero con valor por defecto)
             elementos.cantidadEquipos.max = 100;
             elementos.cantidadEquipos.value = Math.max(2, elementos.cantidadEquipos.value);
         } else {
@@ -201,7 +201,7 @@
                 elementos.resumenAhorro.style.display = 'none';
             }
             
-            // Configurar cantidad de equipos para uso personal
+            // Configurar cantidad de equipos para uso personal (campo oculto pero con valor por defecto)
             elementos.cantidadEquipos.max = 3;
             elementos.cantidadEquipos.value = 1; // Comenzar en 1 para uso personal
         }
@@ -361,12 +361,12 @@
             email: formData.get('email'),
             telefono: formData.get('telefono'),
             tipoUsuario: tipo,
-            cantidadEquipos: formData.get('cantidadEquipos'),
+            cantidadEquipos: formData.get('cantidadEquipos') || '1', // Siempre enviar valor por defecto
             mensaje: formData.get('mensaje') || '',
-            // Para uso personal, estos campos van vacíos
-            preferenciaContacto: tipo === 'personal' ? '' : (formData.get('preferenciaContacto') || ''),
-            horarioPreferido: tipo === 'personal' ? '' : (formData.get('horarioPreferido') || ''),
-            ahorroEstimado: tipo === 'personal' ? '' : elementos.valorAhorro.textContent
+            // Campos que ahora siempre van vacíos (ocultos para ambos tipos)
+            preferenciaContacto: '',
+            horarioPreferido: '',
+            ahorroEstimado: ''
         };
 
         // Agregar campos específicos de empresa si aplica
@@ -429,16 +429,7 @@
                     }
                 </span>
             </div>
-            <div class="data-item">
-                <span class="data-label">Cantidad de Equipos:</span>
-                <span class="data-value"><span class="highlight">${datos.cantidadEquipos} equipo(s)</span></span>
-            </div>
-            ${datos.ahorroEstimado ? `
-            <div class="data-item">
-                <span class="data-label">Ahorro Estimado:</span>
-                <span class="data-value"><span class="highlight">${datos.ahorroEstimado}</span></span>
-            </div>
-            ` : ''}
+            <!-- Cantidad de equipos y ahorro estimado ahora ocultos en el email -->
         </div>
     </div>`;
 
@@ -451,38 +442,13 @@
                 <span class="data-label">Nombre de la Empresa:</span>
                 <span class="data-value"><strong>${datos.nombreEmpresa || 'No especificado'}</strong></span>
             </div>
-            <div class="data-item">
-                <span class="data-label">Rubro:</span>
-                <span class="data-value">${datos.rubro || 'No especificado'}</span>
-            </div>
-            <div class="data-item">
-                <span class="data-label">Software Crítico:</span>
-                <span class="data-value">${datos.softwareCritico || 'No especificado'}</span>
-            </div>
+            <!-- Rubro y Software Crítico ahora ocultos en el email -->
         </div>
     </div>`;
         }
 
-        if (datos.preferenciaContacto || datos.horarioPreferido) {
-            mensajeCompleto += `
-    <div class="section">
-        <h2>Preferencias de Contacto</h2>
-        <div class="section-content">
-            ${datos.preferenciaContacto ? `
-            <div class="data-item">
-                <span class="data-label">Medio Preferido:</span>
-                <span class="data-value"><strong>${datos.preferenciaContacto}</strong></span>
-            </div>
-            ` : ''}
-            ${datos.horarioPreferido ? `
-            <div class="data-item">
-                <span class="data-label">Horario Preferido:</span>
-                <span class="data-value">${datos.horarioPreferido}</span>
-            </div>
-            ` : ''}
-        </div>
-    </div>`;
-        }
+        // Preferencias de contacto ahora siempre ocultas
+        // if (datos.preferenciaContacto || datos.horarioPreferido) { ... }
 
         if (datos.mensaje) {
             mensajeCompleto += `
